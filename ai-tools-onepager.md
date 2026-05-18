@@ -24,12 +24,9 @@ Where reality can check the work, the agent is reliable. Where only you can chec
 | Grant design | Give it the funder's call; build a requirements checklist; co-draft | Confidently wrong; expert review required; do not upload confidential ideas |
 | Critical thinking / Socratic | Tell it to argue against you; use an independent critic | It tends to agree with you; sparring partner, not authority |
 
-## Sources (independently verified)
+## References
 
-- Capabilities/models/interfaces — Anthropic documentation: https://code.claude.com/docs/en/overview
-- Citation fabrication — Walters & Wilder, *Scientific Reports* (2023): GPT-3.5 55%, GPT-4 18% fabricated. DOI: 10.1038/s41598-023-41032-5
-- Sycophancy — Sharma et al. (2023), arXiv:2310.13548 (Anthropic)
-- Confabulation — Farquhar et al. (2024), *Nature* 630:625–630. DOI: 10.1038/s41586-024-07421-0
+Evidence for these claims: [references.md](./references.md).
 
 ## The same lens, every tool
 
@@ -41,7 +38,7 @@ Where reality can check the work, the agent is reliable. Where only you can chec
 
 ## Learn more
 
-- Markdown basics: https://www.markdownguide.org/basic-syntax/
-- Videos: a real workflow https://www.youtube.com/watch?v=-QFHIoCo-Ko — skills workshop https://www.youtube.com/watch?v=pFsfax19yOM
+- [Markdown basics](https://www.markdownguide.org/basic-syntax/)
+- Videos: [a real workflow](https://www.youtube.com/watch?v=-QFHIoCo-Ko) and a [skills workshop](https://www.youtube.com/watch?v=pFsfax19yOM)
 
 Core idea: AI is most reliable where reality can check it, least where only you can.
