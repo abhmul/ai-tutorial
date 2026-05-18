@@ -2,7 +2,7 @@
 
 From an introductory talk on AI tools. It assumes no prior experience, gives you a way to reason about any AI tool using one — Claude Code — as the running example, and is explicit about where these tools are and are not reliable.
 
-Sourcing: capability descriptions come from official documentation; cautionary claims from peer-reviewed or primary sources. Full citations are in [references.md](./references.md).
+Sourcing: capability descriptions come from official documentation; cautionary claims from peer-reviewed sources. Full citations are in [references.md](./references.md).
 
 **Contents**
 
@@ -10,7 +10,6 @@ Sourcing: capability descriptions come from official documentation; cautionary c
 - [The core principle](#the-core-principle)
 - [Five uses, with cautions](#five-uses-with-cautions)
 - [Known limitations](#known-limitations)
-- [References](#references)
 - [The same lens, every tool](#the-same-lens-every-tool)
 - [Next steps](#next-steps)
 
@@ -32,9 +31,9 @@ The practical consequence: the same model can be weak or strong depending on its
 
 ## The core principle
 
-> Where an external reality can check the work, the agent is reliable. Where only you can check it, its weaknesses matter most.
+> An agent is reliable only as far as the check on its work reaches. Where an external reality can test the output, the loop can converge. Where only you can check it, that bound is entirely on you.
 
-Code can be run and tested, so the act–observe–correct loop converges on something that works. A citation, a grant claim, or an argument has no automatic test; there you are the only check, and the failure modes below apply directly. Every use case is an instance of this principle.
+Code can be run and tested, so the act–observe–correct loop can converge — but only within what the tests cover; a plausible result that passes weak tests is the failure Anthropic calls the trust-then-verify gap. A citation, a grant claim, or an argument has no automatic test; there you are the only check, and the failure modes below apply directly. Every use case is an instance of this principle.
 
 ---
 
@@ -44,15 +43,15 @@ Each entry: a workflow, why it needs an agent rather than a chatbot, and the mai
 
 ### 1. Literature review
 
-Workflow: state your question and scope; have it search and fetch real papers, read the actual pages, and write structured notes to a file; use subagents for subtopics in parallel; require every citation to list the source it retrieved, with a resolvable DOI.
+Workflow: state your question and scope; have it search and fetch real papers, read the actual pages, and write structured notes to a file; use subagents for subtopics in parallel; require every citation to list the source it retrieved, with a resolvable DOI (a permanent link that resolves to the exact paper).
 
 Why an agent: a chatbot produces citations from memory and invents plausible ones; an agent can retrieve and quote the actual source and leave you an auditable file.
 
-Caution: AI fabricates references at high rates. Require retrieval, check every DOI yourself, and cross-check in Google Scholar or PubMed. Retrieval reduces fabrication but does not remove it; human verification is required.
+Caution: AI fabricates references at high rates. Require retrieval, check every DOI yourself, and cross-check in Google Scholar or PubMed. Retrieval can only reduce, not eliminate, the failure: the model can still misquote or misattribute the page it fetched, or assert beyond it; human verification is required.
 
 ### 2. Coding
 
-Workflow: have it read the codebase in plan mode (read-only); it proposes a plan you approve or edit; it implements, runs the tests, reads failures, and iterates until they pass; it opens a pull request for your review.
+Workflow: have it read the codebase in plan mode (read-only); it proposes a plan you approve or edit; it implements, runs the tests, reads failures, and iterates until they pass; it opens a pull request — a proposed change you review before it is merged.
 
 Why an agent: it runs the code and corrects itself against real errors, instead of returning code that only looks correct.
 
@@ -60,7 +59,7 @@ Caution: a plausible implementation can still mishandle edge cases — Anthropic
 
 ### 3. Presentation planning
 
-Workflow: it researches the topic, writes an outline to a persistent file, drafts notes, runs a separate critique pass on the structure, and iterates, with version history in git.
+Workflow: it researches the topic, writes an outline to a persistent file, drafts notes, runs a separate critique pass on the structure, and iterates, with version history in git (a system that records every version of a file).
 
 Why an agent: the outline is a versioned file it can reopen and restructure across a session, not a chat transcript.
 
@@ -90,19 +89,13 @@ Inherent to current AI, not imminent fixes:
 
 - It can be wrong while sounding authoritative.
 - Its knowledge stops at a training cutoff; recent changes may be unknown.
-- It can invent citations, APIs, and even command output. Verify outputs that matter.
+- It can invent citations, APIs (a program's command names), and even command output. Verify outputs that matter.
 - It tends to agree with you, which undermines using it to check your own reasoning.
 - It does not retain context between sessions unless you provide it.
 - Cost scales with usage; long sessions and large projects cost more.
 - Permission prompts are guardrails, not security. Do not auto-approve blindly.
 
 Used where reality checks the work, these are manageable. Where only you can check, stay in the loop.
-
----
-
-## References
-
-Citations for the capability and cautionary claims: [references.md](./references.md).
 
 ---
 

@@ -12,17 +12,17 @@ The same model is weak or strong depending on its harness. Claude Code pairs a c
 
 ## Core principle
 
-Where reality can check the work, the agent is reliable. Where only you can check it, its weaknesses matter most. Code has tests; citations and arguments do not.
+An agent is reliable only as far as the check on its work reaches. Code can be tested, so the loop can converge — but only within what the tests cover. Citations and arguments have no automatic test; there you are the only check.
 
 ## Five uses, with the main caution
 
 | Task | How to use it | Main caution |
 |---|---|---|
 | Literature review | Have it fetch and quote real papers; require resolvable DOIs | It invents references; check every DOI yourself |
-| Coding | Let it plan, write, run tests, fix, open a PR you review | Looks-right is not works; review before shipping |
+| Coding | Let it plan, write, run tests, fix, open a pull request you review | Looks-right is not works; review before shipping |
 | Presentation planning | Research, then a persistent outline file, then critique, then iterate | No test for a talk; you are the only check; voice must be yours |
 | Grant design | Give it the funder's call; build a requirements checklist; co-draft | Confidently wrong; expert review required; do not upload confidential ideas |
-| Critical thinking / Socratic | Tell it to argue against you; use an independent critic | It tends to agree with you; sparring partner, not authority |
+| Critical thinking / Socratic | Tell it to argue against you; use an independent critic | It agrees with you, and invents objections that change when re-asked; sparring partner, not authority |
 
 ## References
 

@@ -12,4 +12,4 @@ Read the one-pager for the gist; the guide for detail.
 
 ## On accuracy
 
-Capability descriptions come from official documentation. The cautionary claims — citation fabrication, sycophancy, confabulation — are backed by peer-reviewed or primary sources, collected in [references.md](./references.md).
+Capability descriptions come from official documentation. The cautionary claims — citation fabrication, sycophancy, confabulation — are backed by peer-reviewed sources, collected in [references.md](./references.md).
