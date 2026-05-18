@@ -1,7 +1,6 @@
 # AI Tools: An Introduction
 
-Materials from an introductory talk on AI tools, for an audience with no prior
-experience.
+Materials from an introductory talk on AI tools.
 
 ## The talk
 
