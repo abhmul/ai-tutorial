@@ -1,15 +1,33 @@
 # AI Tools: An Introduction
 
-Materials from an introductory talk on AI tools, for an audience with no prior experience. The documents give a way to reason about any AI tool and are explicit about where these tools are and are not reliable.
+Materials from an introductory talk on AI tools, for an audience with no prior
+experience.
 
-## Documents
+## The talk
 
-- **[ai-tools-guide.md](./ai-tools-guide.md)** — the full guide: the three-part lens (model / harness / interface), five use cases with cautions, known limitations, and a tool comparison.
-- **[ai-tools-onepager.md](./ai-tools-onepager.md)** — a one-page summary of the same material, for handouts or quick reference.
-- **[references.md](./references.md)** — sources backing the cautionary and capability claims.
+- **Recording:** [Zoom recording](https://uic.zoom.us/rec/play/QSn5tiLq4kKBP9jIiT3mxbatB5VWo4V6d3f_xlrGPgA15APxY-pQJy7ZkRD-U8an50M3bP8tFUmIlUHV.PYPsa1FIZO5e3v4V?accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&oldStyle=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Fuic.zoom.us%2Frec%2Fshare%2FO03pIMMDnJ3pXvuNbhB5jIvA7zU5lCAKes8SZ36i6BAcM9bA2Dy_QWLdQfu-6KcE.pH_bCBSi-RgUmLEG) (hosted on UIC Zoom).
+- **Notes:** [`ai-tutorial-meeting-notes.pdf`](./ai-tutorial-meeting-notes.pdf)
+  — the handwritten notes used during the talk.
 
-Read the one-pager for the gist; the guide for detail.
+The talk reasons about any AI tool by separating it into model, harness, and
+interface, then covers how a model works on a context buffer of tokens, the
+agent loop that lets it act, and the permission and safety concerns that follow.
 
-## On accuracy
+## Getting started
 
-Capability descriptions come from official documentation. The cautionary claims — citation fabrication, sycophancy, confabulation — are backed by peer-reviewed sources, collected in [references.md](./references.md).
+[`recommendations.md`](./recommendations.md) — step-by-step suggestions for
+trying these tools: starting with chat models, moving to agentic tools,
+handling permissions and misalignment, and further resources. It also links to two example [skills](https://agentskills.io/home) in [`skills/`](./skills/),
+`grill-me` and `checkpoint`.
+
+## AI-generated companion documents
+
+Produced by Claude Code with minimal prompting and tuning, and included as
+examples of what such tools can generate. Secondary to the talk notes and
+recommendations above.
+
+- [`ai-tools-guide.md`](./ai-tools-guide.md) — a long-form expansion of the
+  talk's themes, with Claude Code as the running example.
+- [`ai-tools-onepager.md`](./ai-tools-onepager.md) — a one-page summary of that
+  guide.
+- [`references.md`](./references.md) — citations supporting the guide.
