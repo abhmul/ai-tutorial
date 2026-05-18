@@ -31,3 +31,7 @@ recommendations above.
 - [`ai-tools-onepager.md`](./ai-tools-onepager.md) — a one-page summary of that
   guide.
 - [`references.md`](./references.md) — citations supporting the guide.
+
+## Contact
+
+Feel free to email me at [abhmul@gmail.com](mailto:abhmul@gmail.com) with any questions, or if you want to share your experience with these tools. I'm also interested in hearing about any interesting use cases you come up with, or any insights you have about how to use these tools effectively.
