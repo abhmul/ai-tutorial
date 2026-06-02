@@ -18,7 +18,7 @@ The talk reasons about AI tools by separating model, harness, and interface. It 
 
 ## Advanced local examples
 
-Setup instructions for examples are allowed to live in README files. Read the README before installing or adapting anything in these directories.
+Setup instructions for examples live in README files. Read the README before installing or adapting anything in these directories.
 
 - [`skills/README.md`](./skills/README.md) — reusable agent skill examples. `grill-me` and `checkpoint` are the most beginner-relevant examples; `web-discovery`, `orchestration`, and `tdd` are more advanced. Checkpoint writes daily notes and may create Git commits, so review its side effects before use.
 - [`hooks/README.md`](./hooks/README.md) — hook and extension examples for Claude Code, Codex, and Pi. These are advanced, opt-in accident guards and workflow examples, not security boundaries and not beginner defaults.
