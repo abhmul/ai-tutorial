@@ -8,8 +8,6 @@ status: stable
 
 These are version-controlled examples of local hooks and extensions for Claude Code, Codex, and Pi. A hook is a command or extension that an agent harness runs around a tool event, such as a proposed Bash command. Treat these files as advanced, opt-in accident guards and workflow examples, not as beginner defaults and not as security boundaries.
 
-This directory is not symlinked into any runtime hook or extension directory. Deployed copies under `~/.claude/`, `~/.codex/`, and `~/.pi/agent/` stay separate so changing this repository does not silently change live agent behavior. Review changes here, test them here, then deploy from a normal terminal outside the agent runtime.
-
 The preferred setup path is agent-assisted customization with human review: ask an agent to inspect this directory, compare it with your existing harness config, and draft a small deployment plan or diff. Do not blindly copy these snippets into a live config, especially if you already have hooks, permissions, or profiles configured.
 
 ## Layout
