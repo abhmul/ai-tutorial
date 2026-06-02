@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generalization review: setup recommendations for newcomers</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --panel: #ffffff;
+      --text: #1f2933;
+      --muted: #52606d;
+      --line: #d9e2ec;
+      --accent: #1d4ed8;
+      --accent-soft: #e0ecff;
+      --warn: #92400e;
+      --warn-soft: #fff7ed;
+      --ok: #166534;
+      --ok-soft: #edf7ed;
+      --shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    html {
+      background: var(--bg);
+      color: var(--text);
+      scroll-snap-type: y proximity;
+    }
+
+    body {
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--accent);
+      text-underline-offset: 0.16em;
+    }
+
+    .deck {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    .slide {
+      box-sizing: border-box;
+      min-height: calc(100vh - 2rem);
+      margin: 0 0 1rem;
+      padding: clamp(1.5rem, 4vw, 4.5rem);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .kicker {
+      margin: 0;
+      color: var(--accent);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 6vw, 5.2rem);
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4.5vw, 3.6rem);
+    }
+
+    h3 {
+      font-size: clamp(1.15rem, 2.5vw, 1.65rem);
+    }
+
+    p {
+      margin: 0;
+      font-size: clamp(1.02rem, 2vw, 1.28rem);
+    }
+
+    ul, ol {
+      margin: 0;
+      padding-left: 1.25rem;
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+    }
+
+    li + li {
+      margin-top: 0.45rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: clamp(0.92rem, 1.6vw, 1.05rem);
+    }
+
+    th, td {
+      padding: 0.75rem;
+      border: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: #f2f5f9;
+    }
+
+    code {
+      padding: 0.08rem 0.28rem;
+      border-radius: 6px;
+      background: #eef2f7;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 0.92em;
+    }
+
+    .lead {
+      max-width: 850px;
+      color: var(--muted);
+      font-size: clamp(1.18rem, 2.6vw, 1.55rem);
+    }
+
+    .grid {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .grid.two {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fbfcfe;
+    }
+
+    .callout {
+      padding: 1rem;
+      border-left: 5px solid var(--accent);
+      border-radius: 14px;
+      background: var(--accent-soft);
+    }
+
+    .callout.warn {
+      border-left-color: var(--warn);
+      background: var(--warn-soft);
+    }
+
+    .callout.ok {
+      border-left-color: var(--ok);
+      background: var(--ok-soft);
+    }
+
+    .label {
+      display: inline-block;
+      margin-right: 0.35rem;
+      padding: 0.12rem 0.5rem;
+      border-radius: 999px;
+      background: #eef2f7;
+      color: #334e68;
+      font-size: 0.82em;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-note {
+      margin-top: 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 780px) {
+      .grid.two, .grid.three {
+        grid-template-columns: 1fr;
+      }
+      .slide {
+        min-height: auto;
+      }
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+    }
+
+    @media print {
+      html {
+        scroll-snap-type: none;
+      }
+      body {
+        background: #fff;
+      }
+      .deck {
+        max-width: none;
+        padding: 0;
+      }
+      .slide {
+        min-height: 100vh;
+        margin: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+        page-break-after: always;
+      }
+      a {
+        color: #000;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck" aria-label="Generalization review slide deck">
+    <section class="slide" id="title">
+      <p class="kicker">AI tools intro · generalization review</p>
+      <h1>Setup recommendations for newcomers</h1>
+      <p class="lead">This presentation explains which parts of the repository can be reused as beginner guidance, which parts are author-local examples, and what should be fixed or explained before publication.</p>
+      <p class="footer-note">Scroll or use Page Up/Page Down. The file is standalone: no remote scripts, no build step.</p>
+    </section>
+
+    <section class="slide" id="reviewed">
+      <p class="kicker">Scope</p>
+      <h2>What was reviewed</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Local evidence</h3>
+          <ul>
+            <li>Repository files, hook snippets, skill files, and setup notes.</li>
+            <li>Findings from the <a href="../orchestration/handoffs/T002-local-audit.md">T002 local audit</a>.</li>
+            <li>The synthesis report at <a href="generalization-review.md">reports/generalization-review.md</a>.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>External evidence</h3>
+          <ul>
+            <li>Official or primary documentation retrieved in <a href="../orchestration/handoffs/T003-external-freshness.md">T003</a> on 2026-06-02.</li>
+            <li>No new independent external verification was performed for this presentation.</li>
+            <li>Unresolved items are listed visibly rather than treated as facts.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout">
+        <p><strong>Main question:</strong> can examples from the author's local agent setup be safely presented as general setup instructions for people with no AI experience?</p>
+      </div>
+    </section>
+
+    <section class="slide" id="plain-terms">
+      <p class="kicker">Plain terms</p>
+      <h2>Terms used in the review</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Model and harness</h3>
+          <p><strong>Model</strong> means the AI system that predicts and generates text. <strong>Harness</strong> means the surrounding program that lets the model read files, run commands, edit files, and ask for permission.</p>
+        </div>
+        <div class="card">
+          <h3>Hook</h3>
+          <p>A <strong>hook</strong> is a script or extension that runs at a specific moment, such as before a shell command. In this repo, hooks are used as accident guards.</p>
+        </div>
+        <div class="card">
+          <h3>Sandbox</h3>
+          <p>A <strong>sandbox</strong> limits what a tool can touch, such as files, network, or system commands. Hooks do not replace sandboxing.</p>
+        </div>
+        <div class="card">
+          <h3>Subagent or worker</h3>
+          <p>A <strong>subagent</strong> or <strong>worker</strong> is a separate agent session assigned a smaller task. Different tools implement this differently.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="main-finding">
+      <p class="kicker">Main finding</p>
+      <h2>Useful examples, not drop-in setup</h2>
+      <p class="lead">The beginner-facing path is sound: start with chat tools, try one agentic tool on a real project, learn permissions, and keep context clean. The advanced infrastructure should be framed separately.</p>
+      <div class="grid three">
+        <div class="card">
+          <h3>Keep</h3>
+          <p>High-level learning sequence and source-retrieval norms.</p>
+        </div>
+        <div class="card">
+          <h3>Fix</h3>
+          <p>Stale Codex config example and portable setup instructions.</p>
+        </div>
+        <div class="card">
+          <h3>Explain</h3>
+          <p>Prerequisites, side effects, permissions, and tool-specific behavior.</p>
+        </div>
+      </div>
+      <div class="callout warn">
+        <p>The risky pattern is not the presence of advanced examples. The risky pattern is presenting local, high-privilege, or tool-specific examples as if they were beginner defaults.</p>
+      </div>
+    </section>
+
+    <section class="slide" id="codex">
+      <p class="kicker">Focus item 1</p>
+      <h2>Codex config and profile guidance needs a freshness fix</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Finding</h3>
+          <ul>
+            <li>The local <a href="../hooks/codex/config.snippet.toml">Codex config snippet</a> uses a profile form that T003 found stale for current Codex docs.</li>
+            <li>T003 reports that Codex 0.134.0+ uses separate profile config files instead of reading <code>[profiles.&lt;name&gt;]</code> from the main config.</li>
+            <li>T003 also reports that <code>features.hooks</code> is the current feature key; <code>codex_hooks</code> is deprecated.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Recommendation</h3>
+          <ul>
+            <li>Show the current base config separately from any high-privilege profile.</li>
+            <li>Label <code>approval_policy = "never"</code> and <code>sandbox_mode = "danger-full-access"</code> as advanced and elevated risk, not a beginner default.</li>
+            <li>Ask T006 or a later implementation task to verify exact final snippets before editing setup docs.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small">Primary sources surfaced by T003: <a href="https://developers.openai.com/codex/config-advanced">Codex advanced configuration</a>, <a href="https://developers.openai.com/codex/hooks">Codex hooks</a>, and <a href="https://developers.openai.com/codex/agent-approvals-security">Codex approvals and security</a>.</p>
+    </section>
+
+    <section class="slide" id="web-discovery">
+      <p class="kicker">Focus item 2</p>
+      <h2>Web discovery needs prerequisites</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Finding</h3>
+          <ul>
+            <li>The local <a href="../skills/web-discovery/SKILL.md">web-discovery skill</a> requires <code>ketch</code> on <code>PATH</code>.</li>
+            <li>T003 found Ketch docs for <code>search</code>, <code>scrape</code>, <code>code</code>, <code>docs</code>, and backend configuration.</li>
+            <li>The repository does not yet give a newcomer enough setup detail to run that skill reliably.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Recommendation</h3>
+          <ul>
+            <li>State the functional contract first: find candidate sources, retrieve source text, then cite the retrieved source.</li>
+            <li>Document Ketch setup or mark the skill as local-only.</li>
+            <li>Do not make Brave, Kagi, or any specific backend a hard requirement unless exact setup is documented.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout ok">
+        <p>Keep the principle that search snippets are leads, not evidence. This is useful beginner-safe guidance.</p>
+      </div>
+      <p class="small">Primary sources surfaced by T003: <a href="https://github.com/1broseidon/ketch">Ketch primary docs</a>, <a href="https://api-dashboard.search.brave.com/app/documentation/web-search/get-started">Brave Search API docs</a>, and <a href="https://agentskills.io/specification">Agent Skills specification</a>.</p>
+    </section>
+
+    <section class="slide" id="orchestration">
+      <p class="kicker">Focus item 3</p>
+      <h2>Orchestration is harness-specific</h2>
+      <p class="lead">Orchestration means splitting a larger job into smaller tasks and giving those tasks to separate workers or fresh sessions.</p>
+      <div class="grid three">
+        <div class="card">
+          <h3>Pi</h3>
+          <p>The local <a href="../skills/orchestration/SKILL.md">orchestration skill</a> dispatches Pi workers through a <code>tmux</code> script. T003 reports that Pi does not have built-in subagents.</p>
+        </div>
+        <div class="card">
+          <h3>Codex</h3>
+          <p>T003 reports that Codex has official subagent workflows and custom TOML agent definitions. These are separate from the Pi worker watcher.</p>
+        </div>
+        <div class="card">
+          <h3>Claude Code</h3>
+          <p>T003 reports that Claude Code has official subagents, while agent teams are experimental and disabled by default.</p>
+        </div>
+      </div>
+      <div class="callout">
+        <p><strong>Portable baseline:</strong> write a task file, start a fresh session or official subagent with only the needed context, and require a handoff artifact that records evidence, changes, blockers, and follow-up tasks.</p>
+      </div>
+      <p class="small">Primary sources surfaced by T003: <a href="https://pi.dev/docs/latest/usage">Pi usage/design docs</a>, <a href="https://developers.openai.com/codex/subagents">Codex subagents</a>, <a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents">Claude Code subagents</a>, and <a href="https://docs.anthropic.com/en/docs/claude-code/agent-teams">Claude Code agent teams</a>.</p>
+    </section>
+
+    <section class="slide" id="hooks">
+      <p class="kicker">Focus item 4</p>
+      <h2>Hooks are opt-in friction, not security boundaries</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Finding</h3>
+          <ul>
+            <li>The local <a href="../hooks/README.md">hooks README</a> documents destructive-command guards for multiple harnesses.</li>
+            <li>The Obsidian guard is a custom confirmation layer for delete-like CLI commands.</li>
+            <li>T003 found official docs distinguishing hooks, permission rules, and sandboxing.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Recommendation</h3>
+          <ul>
+            <li>Install these hooks only as an advanced, explicit opt-in step.</li>
+            <li>Document prerequisites: Bash, <code>jq</code>, <code>python3</code> for the Obsidian classifier, and harness-specific hook or extension support.</li>
+            <li>Explain toggle files, project opt-outs, failure behavior, and the temporary Obsidian confirmation file.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout warn">
+        <p>A hook can catch many obvious accidents. It does not replace backups, sandboxing, least-privilege permissions, or human review.</p>
+      </div>
+      <p class="small">Primary sources surfaced by T003: <a href="https://developers.openai.com/codex/hooks">Codex hooks</a>, <a href="https://docs.anthropic.com/en/docs/claude-code/hooks">Claude Code hooks</a>, <a href="https://docs.anthropic.com/en/docs/claude-code/permissions">Claude Code permissions</a>, <a href="https://pi.dev/docs/latest/extensions">Pi extensions</a>, and <a href="https://obsidian.md/help/cli">Obsidian CLI docs</a>.</p>
+    </section>
+
+    <section class="slide" id="python-env">
+      <p class="kicker">Focus item 5</p>
+      <h2>Use isolated Python environments, not author-local paths</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Finding</h3>
+          <ul>
+            <li>The local audit found examples that use an author-specific shared virtual environment path.</li>
+            <li>That path is useful for the author's machine but is not a requirement newcomers can satisfy by default.</li>
+            <li>T003 found official docs supporting isolated Python environments and tool installers.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Recommendation</h3>
+          <ul>
+            <li>If Python helpers are shown, give portable alternatives such as <code>python -m venv .venv</code>, <code>uv venv</code>, or <code>pipx</code> for standalone command-line tools.</li>
+            <li>Do not commit virtual environment directories.</li>
+            <li>Record install commands or dependency files so the environment can be recreated.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small">Primary sources surfaced by T003: <a href="https://docs.python.org/3/library/venv.html">Python venv</a>, <a href="https://docs.astral.sh/uv/getting-started/installation/">uv installation</a>, <a href="https://docs.astral.sh/uv/pip/environments/">uv environments</a>, and <a href="https://pipx.pypa.io/stable/how-to/install-pipx/">pipx installation</a>.</p>
+    </section>
+
+    <section class="slide" id="aliases">
+      <p class="kicker">Focus item 6</p>
+      <h2>Prefer explicit commands over shell aliases</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Finding</h3>
+          <ul>
+            <li>T002 found local shell wrappers that change harness startup behavior.</li>
+            <li>For Codex, the local wrapper selects the high-privilege auto profile; that is too consequential to hide in an alias.</li>
+            <li>T003 found an official Pi-specific alias mechanism, but not a verified cross-harness equivalent.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Recommendation</h3>
+          <ul>
+            <li>Beginner docs should show explicit commands.</li>
+            <li>If aliases are included, make them optional, short, and harness-specific.</li>
+            <li>Explain exactly what each wrapper changes, especially permissions and sandboxing.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small">Primary source surfaced by T003: <a href="https://pi.dev/docs/latest/shell-aliases">Pi shell aliases</a>. Local alias evidence is summarized in <a href="../orchestration/handoffs/T002-local-audit.md">T002</a> without publishing unrelated private shell configuration.</p>
+    </section>
+
+    <section class="slide" id="recommendations-summary">
+      <p class="kicker">Recommendation summary</p>
+      <h2>What to do next</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Class</th>
+            <th>Action</th>
+            <th>Why it matters for newcomers</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="label">Must-fix</span></td>
+            <td>Update stale Codex config/profile guidance; stop presenting author-local deployment paths as portable; label Pi/tmux orchestration and high-privilege auto-mode correctly.</td>
+            <td>Prevents users from copying commands that fail, use obsolete syntax, or silently grant more access than expected.</td>
+          </tr>
+          <tr>
+            <td><span class="label">Should-explain</span></td>
+            <td>Document Ketch or equivalent web discovery, hook prerequisites, checkpoint side effects, portable Python environments, and optional aliases.</td>
+            <td>Turns hidden assumptions into visible setup choices.</td>
+          </tr>
+          <tr>
+            <td><span class="label">Optional</span></td>
+            <td>Keep advanced appendices for Pi, hooks, orchestration, Ketch, and local worker dispatch.</td>
+            <td>Advanced readers can learn from real examples without confusing them for the beginner path.</td>
+          </tr>
+          <tr>
+            <td><span class="label">No-change</span></td>
+            <td>Keep the high-level beginner sequence and the norm that retrieved source text, not search snippets, supports claims.</td>
+            <td>These are portable and useful without requiring the author's local infrastructure.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="slide" id="beginner-path">
+      <p class="kicker">Beginner path</p>
+      <h2>A clearer setup story</h2>
+      <ol>
+        <li><strong>Start simple:</strong> try chat tools before asking an agent to change files.</li>
+        <li><strong>Use one agentic tool on one real project:</strong> learn how it asks for permission and how to review changes.</li>
+        <li><strong>Keep commands explicit:</strong> avoid hidden aliases until the user understands what they change.</li>
+        <li><strong>Use isolated environments:</strong> prefer documented virtual environments or CLI installers over machine-specific paths.</li>
+        <li><strong>Add advanced guards deliberately:</strong> hooks and high-privilege profiles belong behind an opt-in warning.</li>
+        <li><strong>When delegating work:</strong> use task files, fresh context, and handoff notes; choose the harness-specific subagent method only after the baseline is understood.</li>
+      </ol>
+    </section>
+
+    <section class="slide" id="edit-map">
+      <p class="kicker">Edit map</p>
+      <h2>Highest-priority files for later edits</h2>
+      <ul>
+        <li><a href="../hooks/codex/config.snippet.toml">hooks/codex/config.snippet.toml</a>: update feature key and profile placement after final verification.</li>
+        <li><a href="../hooks/README.md">hooks/README.md</a>: replace or clearly label author-local deployment commands; add opt-in warnings and prerequisites.</li>
+        <li><a href="../recommendations.md">recommendations.md</a>: preserve the beginner path while separating advanced local examples.</li>
+        <li><a href="../README.md">README.md</a>: distinguish beginner materials from advanced/local examples.</li>
+        <li><a href="../skills/web-discovery/SKILL.md">skills/web-discovery/SKILL.md</a>: document Ketch setup or mark local-only.</li>
+        <li><a href="../skills/orchestration/SKILL.md">skills/orchestration/SKILL.md</a>: label Pi/tmux worker dispatch as advanced and not cross-harness.</li>
+        <li><a href="../skills/checkpoint/SKILL.md">skills/checkpoint/SKILL.md</a>: warn that checkpoint writes daily notes and may commit.</li>
+      </ul>
+      <p class="small">Full backlog: <a href="generalization-review.md#later-edit-backlog">generalization-review.md, later edit backlog</a>.</p>
+    </section>
+
+    <section class="slide" id="unresolved">
+      <p class="kicker">Assumptions and unresolved points</p>
+      <h2>Do not present these as settled</h2>
+      <ul>
+        <li><strong>Exact Codex snippets:</strong> T003 identified the needed direction; T006 or a follow-up implementation task should verify final syntax before publishing setup instructions.</li>
+        <li><strong>Pi in the main path:</strong> decide whether Pi appears in the beginner presentation or only in an advanced appendix.</li>
+        <li><strong>Web backend choice:</strong> decide whether to recommend Ketch directly or present only the search-plus-retrieval contract.</li>
+        <li><strong>Human-behavior cautions:</strong> if final guide text keeps claims such as permission fatigue, add primary or peer-reviewed support, or soften them into personal workflow advice.</li>
+      </ul>
+      <div class="callout warn">
+        <p>This deck relies on T002, T003, and T004. It is not a final verification pass.</p>
+      </div>
+    </section>
+
+    <section class="slide" id="sources">
+      <p class="kicker">Sources</p>
+      <h2>Evidence used for this deck</h2>
+      <div class="grid two">
+        <div class="card">
+          <h3>Local reports</h3>
+          <ul>
+            <li><a href="../orchestration/handoffs/T002-local-audit.md">T002 local audit handoff</a></li>
+            <li><a href="../orchestration/handoffs/T003-external-freshness.md">T003 external freshness handoff</a></li>
+            <li><a href="../orchestration/handoffs/T004-synthesis-recommendations.md">T004 synthesis handoff</a></li>
+            <li><a href="generalization-review.md">Generalization review report</a></li>
+            <li><a href="../references.md">references.md</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Official or primary documentation surfaced by T003</h3>
+          <ul>
+            <li><a href="https://developers.openai.com/codex/config-advanced">OpenAI Codex configuration</a>, <a href="https://developers.openai.com/codex/hooks">hooks</a>, <a href="https://developers.openai.com/codex/subagents">subagents</a>, and <a href="https://developers.openai.com/codex/agent-approvals-security">approvals/security</a></li>
+            <li><a href="https://docs.anthropic.com/en/docs/claude-code/hooks">Claude Code hooks</a>, <a href="https://docs.anthropic.com/en/docs/claude-code/permissions">permissions</a>, <a href="https://docs.anthropic.com/en/docs/claude-code/sub-agents">subagents</a>, and <a href="https://docs.anthropic.com/en/docs/claude-code/agent-teams">agent teams</a></li>
+            <li><a href="https://pi.dev/docs/latest/usage">Pi usage</a>, <a href="https://pi.dev/docs/latest/extensions">extensions</a>, <a href="https://pi.dev/docs/latest/settings">settings</a>, and <a href="https://pi.dev/docs/latest/shell-aliases">shell aliases</a></li>
+            <li><a href="https://github.com/1broseidon/ketch">Ketch</a>, <a href="https://obsidian.md/help/cli">Obsidian CLI</a>, <a href="https://docs.python.org/3/library/venv.html">Python venv</a>, <a href="https://docs.astral.sh/uv/getting-started/installation/">uv</a>, and <a href="https://pipx.pypa.io/stable/how-to/install-pipx/">pipx</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
