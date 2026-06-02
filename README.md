@@ -1,35 +1,30 @@
 # AI Tools: An Introduction
 
-Materials from an introductory talk on AI tools.
+Materials from an introductory talk on AI tools. Start with the beginner-facing materials first; the skills, hooks, and orchestration files are examples of more advanced local workflows, not required setup for newcomers.
 
 ## The talk
 
 - **Recording:** [Zoom recording](https://uic.zoom.us/rec/play/QSn5tiLq4kKBP9jIiT3mxbatB5VWo4V6d3f_xlrGPgA15APxY-pQJy7ZkRD-U8an50M3bP8tFUmIlUHV.PYPsa1FIZO5e3v4V?accessLevel=meeting&canPlayFromShare=true&from=share_recording_detail&continueMode=true&oldStyle=true&componentName=rec-play&originRequestUrl=https%3A%2F%2Fuic.zoom.us%2Frec%2Fshare%2FO03pIMMDnJ3pXvuNbhB5jIvA7zU5lCAKes8SZ36i6BAcM9bA2Dy_QWLdQfu-6KcE.pH_bCBSi-RgUmLEG) (hosted on UIC Zoom).
-- **Notes:** [`ai-tutorial-meeting-notes.pdf`](./ai-tutorial-meeting-notes.pdf)
-  — the handwritten notes used during the talk.
+- **Notes:** [`ai-tutorial-meeting-notes.pdf`](./ai-tutorial-meeting-notes.pdf) — the handwritten notes used during the talk.
 
-The talk reasons about any AI tool by separating it into model, harness, and
-interface, then covers how a model works on a context buffer of tokens, the
-agent loop that lets it act, and the permission and safety concerns that follow.
+The talk reasons about AI tools by separating model, harness, and interface. It then covers how a model works on a context buffer of tokens, how an agent loop lets it act through tools, and what permission and safety questions follow.
 
-## Getting started
+## Start here
 
-[`recommendations.md`](./recommendations.md) — step-by-step suggestions for
-trying these tools: starting with chat models, moving to agentic tools,
-handling permissions and misalignment, and further resources. It also links to two example [skills](https://agentskills.io/home) in [`skills/`](./skills/),
-`grill-me` and `checkpoint`.
+- [`recommendations.md`](./recommendations.md) — step-by-step suggestions for trying chat tools, then one agentic tool on a real project, while learning permissions and context management.
+- [`ai-tools-onepager.md`](./ai-tools-onepager.md) — a short summary of the companion guide.
+- [`ai-tools-guide.md`](./ai-tools-guide.md) — a longer AI-generated companion guide using Claude Code as the running example.
+- [`references.md`](./references.md) — sources for factual claims in the guide, one-pager, and recommendations.
 
-## AI-generated companion documents
+## Advanced local examples
 
-Produced by Claude Code with minimal prompting and tuning, and included as
-examples of what such tools can generate. Secondary to the talk notes and
-recommendations above.
+Setup instructions for examples are allowed to live in README files. Read the README before installing or adapting anything in these directories.
 
-- [`ai-tools-guide.md`](./ai-tools-guide.md) — a long-form expansion of the
-  talk's themes, with Claude Code as the running example.
-- [`ai-tools-onepager.md`](./ai-tools-onepager.md) — a one-page summary of that
-  guide.
-- [`references.md`](./references.md) — citations supporting the guide.
+- [`skills/README.md`](./skills/README.md) — reusable agent skill examples. `grill-me` and `checkpoint` are the most beginner-relevant examples; `web-discovery`, `orchestration`, and `tdd` are more advanced. Checkpoint writes daily notes and may create Git commits, so review its side effects before use.
+- [`hooks/README.md`](./hooks/README.md) — hook and extension examples for Claude Code, Codex, and Pi. These are advanced, opt-in accident guards and workflow examples, not security boundaries and not beginner defaults.
+- [`reports/generalization-review.md`](./reports/generalization-review.md) — a historical review of which local setup ideas generalize to newcomers and which should stay framed as advanced or author-local examples.
+
+Prefer agent-assisted customization with human review over blind copy-paste: ask an agent to inspect the relevant README, compare it with your current tool configuration, and draft a small setup plan or diff for you to review.
 
 ## Contact
 

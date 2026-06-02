@@ -1,0 +1,75 @@
+{
+  "id": "T008",
+  "type": "independent source/freshness verification",
+  "priority": 94,
+  "status": "pending",
+  "dependencies": ["T007"],
+  "title": "Verify factual claims and exact setup snippets before implementation",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T007-implementation-planning.json",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T007-implementation-planning.md",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T002-local-audit.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T003-external-freshness.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T006-independent-final-verification.md",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/references.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/hooks.json",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/ai-tools-guide.md",
+      "/home/abhmul/Documents/ai-tools-intro/ai-tools-onepager.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/claude/settings.snippet.json",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_codex_hooks.py",
+      "/home/abhmul/Documents/ai-tools-intro/skills/checkpoint/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/tdd/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/grill-me/SKILL.md"
+    ]
+  },
+  "scope": [
+    "Independently verify the factual claims needed by the implementation tasks before workers edit user-facing text or setup snippets.",
+    "Do not rely solely on T003 or T006 for volatile product/API/setup facts; use official or primary sources where possible and record access dates.",
+    "Verify exact current Codex hook/config/profile guidance, including the canonical hooks feature key, profile-file placement, hook JSON expectations, approval policy, sandbox mode, and risk framing for full-access/no-approval operation.",
+    "Verify current native subagent or worker workflows for Codex and Claude Code, and verify Pi's relevant behavior: no built-in subagents if still current, skills/extensions/settings locations, and any tmux/external-worker caveats if sourced from Pi docs.",
+    "Verify Ketch setup facts if web-discovery is documented directly: install paths, commands, backend configuration, and which backends require API keys. Treat Brave/Kagi/etc. as optional unless the final docs recommend them directly.",
+    "Verify Python environment setup facts for venv, uv, and pipx if those are used in final docs.",
+    "Verify Obsidian CLI facts if the hook docs describe the Obsidian guard or delete-like commands.",
+    "Audit prompt-provided decisions and separate preference from fact: README.md instructions are allowed by user decision; agent-led installation/customization is a preference; the claim that native subagent workflows exist is factual and must be verified before stating it; the statement that agents can help port a skill should be written as a reasonable assistance option, not a guaranteed capability unless sourced.",
+    "Review recommendations.md for volatile or unsupported claims that implementation should either verify, cite, or soften: paid tiers/pricing, specific response times, /init availability, sandboxing and auto-mode behavior, context-size performance degradation, and permission-fatigue claims."
+  ],
+  "goals": [
+    "Produce /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T008-source-claim-verification.md.",
+    "Provide exact snippets or source-backed requirements that T009/T010/T011 may use, especially for Codex config/profile examples.",
+    "List which claims are approved for user-facing use, which must be softened into opinion/workflow advice, and which require references.md updates if retained.",
+    "List source URLs, access dates, and any retrieval limitations."
+  ],
+  "non_goals": [
+    "Do not edit README.md, recommendations.md, references.md, hooks, skills, reports, or task files in this task except the required handoff.",
+    "Do not read /home/abhmul/Documents/ai-tools-intro/tmp/ or /home/abhmul/Documents/ai-tools-intro/archive/.",
+    "Do not read private shell configuration; rely on existing handoffs for local alias summaries."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md: newcomer audience, plain language, neutral tone, no hype/slogans/emoji, capability claims trace to official documentation, cautionary claims from primary or peer-reviewed sources in references.md.",
+    "Prefer official or primary sources over blogs or secondary summaries.",
+    "If web access or retrieval is unavailable, clearly mark unverified claims and do not raise trust based on memory.",
+    "Do not use Python unless you first read /home/abhmul/Documents/vaults/agent-vault/agent-python/README or README.md if present."
+  ],
+  "success_criteria": [
+    "Handoff includes a claim table with claim, verdict, source URL, access date, implementation consequence, and references.md consequence.",
+    "Exact Codex config/profile guidance is either verified with current docs or explicitly marked unresolved.",
+    "Prompt decisions are separated from factual claims so later docs do not cite user preference as external fact.",
+    "No forbidden directories or private shell config are read."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T008-source-claim-verification.md"
+  ],
+  "worker_token_budget": 150000
+}

@@ -1,0 +1,79 @@
+{
+  "id": "T012",
+  "type": "independent final verification",
+  "priority": 60,
+  "status": "pending",
+  "dependencies": ["T009", "T010", "T011"],
+  "title": "Independently verify all implementation edits and factual claims",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T007-implementation-planning.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T008-source-claim-verification.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T009-hooks-codex-implementation.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T010-skills-implementation.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T011-docs-references-implementation.md",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/references.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/hooks.json",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_codex_hooks.py",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/checkpoint/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/tdd/SKILL.md"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/auto.config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/skills/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/grill-me/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/references/pi-worker-watch.sh",
+      "/home/abhmul/Documents/ai-tools-intro/ai-tools-guide.md",
+      "/home/abhmul/Documents/ai-tools-intro/ai-tools-onepager.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_claude_hooks.py",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_obsidian_guard.py",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_pi_hooks.py"
+    ]
+  },
+  "scope": [
+    "As an independent verifier, check all edits from T009, T010, and T011 against T007's plan, the generalization-review recommendations, repository instructions, and the user's current decisions.",
+    "Do not trust producer handoffs or T008 blindly. Spot-check central factual claims against official or primary sources, especially any claim introduced into user-facing text: Codex config/profile syntax, Codex/Claude native subagents, Pi/tmux/Pi-no-built-in-subagents statements, Ketch setup, Python environment guidance, Obsidian CLI behavior, permission/sandbox/auto-mode behavior, and any retained paid-tier/response-time/context-size/permission-fatigue claims.",
+    "Verify that prompt decisions are not misrepresented as external facts. User preferences may be stated as project choices; factual claims derived from them need sources.",
+    "Verify that must-fix, should-explain, optional, and no-change recommendations were handled appropriately and that optional material is framed as optional/advanced rather than beginner default.",
+    "Verify Codex stale syntax is removed or explicitly version-scoped if retained, and that hook tests align with current snippets.",
+    "Verify guide/one-pager sync decisions if those files were changed or if references.md changes affect their claims.",
+    "Update state.json with final trust verdicts and create targeted follow-up task JSON files if verification fails."
+  ],
+  "goals": [
+    "Produce /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T012-independent-final-verification.md.",
+    "Update /home/abhmul/Documents/ai-tools-intro/orchestration/state.json with task statuses, artifact trust verdicts, blockers, and any spawned fix tasks.",
+    "Run feasible validation checks, including JSON validity for task/state files and relevant hook tests if the environment is available."
+  ],
+  "non_goals": [
+    "Do not perform broad rewrites while verifying; if fixes are needed, create focused follow-up tasks unless a correction is trivial and explicitly documented.",
+    "Do not read /home/abhmul/Documents/ai-tools-intro/tmp/ or /home/abhmul/Documents/ai-tools-intro/archive/.",
+    "Do not read private shell configuration."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md.",
+    "Verifier must be independent from the workers who produced T009/T010/T011 edits.",
+    "Use official or primary sources for factual claim verification. If web access is unavailable, mark trust accordingly and create a source-verification follow-up.",
+    "Do not use Python or run pytest unless you first read /home/abhmul/Documents/vaults/agent-vault/agent-python/README or README.md if present."
+  ],
+  "success_criteria": [
+    "Handoff states accepted/partial/rejected verdicts for each changed file and for source-claim traceability.",
+    "All user decisions from T007 are checked explicitly.",
+    "No stale Codex config guidance, author-local portable commands, unsupported security claims, or unsupported cautionary claims remain in user-facing text.",
+    "state.json is valid JSON and records final queue/trust/blocker state.",
+    "If failures are found, follow-up task JSON files are complete enough for workers to fix without inherited context."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T012-independent-final-verification.md",
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json"
+  ],
+  "worker_token_budget": 150000
+}

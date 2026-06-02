@@ -6,6 +6,10 @@ description: "Checkpoint file-modifying work: update today's daily note and comm
 
 Record a concise daily-note entry and commit a safe, coherent work slice.
 
+## Side effects
+
+Warning: this skill changes files. It writes or appends `daily-notes/YYYY-MM-DD.md` and may create a Git commit unless `--no-commit` is supplied or a stop condition applies. Use it only when those side effects fit the current task scope.
+
 ## Arguments
 
 $ARGUMENTS

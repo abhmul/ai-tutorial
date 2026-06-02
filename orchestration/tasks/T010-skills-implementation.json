@@ -1,0 +1,70 @@
+{
+  "id": "T010",
+  "type": "implementation",
+  "priority": 80,
+  "status": "pending",
+  "dependencies": ["T009"],
+  "title": "Implement skill framing, setup guidance, and portability fixes",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T007-implementation-planning.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T008-source-claim-verification.md",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/checkpoint/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/tdd/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/grill-me/SKILL.md"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/references/pi-worker-watch.sh",
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md"
+    ]
+  },
+  "scope": [
+    "Edit only skill-related files, and create /home/abhmul/Documents/ai-tools-intro/skills/README.md if useful for local instructions. The user explicitly allows instructions for skills, hooks, and other files to live in README.md files.",
+    "Keep the tmux-based Pi orchestration worker available, but describe it as one implementation method among many. Do not present it as the only or cross-harness dispatch method.",
+    "Put a harness-neutral orchestration baseline before tool-specific dispatch: write a task file, start a fresh agent session or official subagent with bounded context, require a handoff artifact, then verify independently.",
+    "Mention native subagent workflows where T008 verifies them, especially Codex and Claude Code. Mention Pi/tmux as an advanced external-process method. State that agents can help adapt or port the task/handoff pattern to a user's preferred harness or tools; frame this as an assistance path, not a guaranteed automatic conversion.",
+    "Update web-discovery to make Ketch or equivalent search-plus-retrieval setup explicit. Keep the rule that search snippets are discovery artifacts, not evidence. Avoid making Brave or any paid/API backend a hard prerequisite unless T008 verifies and the text documents that setup.",
+    "Update checkpoint with an upfront side-effect warning: it writes daily-notes/ and may create Git commits.",
+    "Fix the TDD skill's missing artifact references if it remains published. Either add the missing artifacts or remove the stale frontmatter references; choose the smallest coherent fix.",
+    "If grill-me remains linked as a beginner resource, add only a minimal note if needed that file/network/literature exploration depends on the agent's permissions and available tools."
+  ],
+  "goals": [
+    "Update /home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md.",
+    "Update /home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md.",
+    "Update /home/abhmul/Documents/ai-tools-intro/skills/checkpoint/SKILL.md.",
+    "Update /home/abhmul/Documents/ai-tools-intro/skills/tdd/SKILL.md or add its missing artifacts, as appropriate.",
+    "Create or update /home/abhmul/Documents/ai-tools-intro/skills/README.md if it improves beginner/advanced framing.",
+    "Produce /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T010-skills-implementation.md."
+  ],
+  "non_goals": [
+    "Do not edit hooks/README.md, Codex snippets, top-level README.md, recommendations.md, references.md, reports, or task files in this task.",
+    "Do not remove the Pi/tmux worker script unless it is broken beyond documentation; the user wants it provided as one possible method.",
+    "Do not read /home/abhmul/Documents/ai-tools-intro/tmp/ or /home/abhmul/Documents/ai-tools-intro/archive/."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md.",
+    "Use plain language for newcomers while preserving precise advanced notes.",
+    "Capability claims about Codex, Claude Code, Pi, Ketch, or Agent Skills must trace to T008 or direct official/primary sources.",
+    "Do not use Python unless you first read /home/abhmul/Documents/vaults/agent-vault/agent-python/README or README.md if present."
+  ],
+  "success_criteria": [
+    "Orchestration docs clearly separate portable task/handoff practice, native subagents, and Pi/tmux worker watching.",
+    "web-discovery docs tell users what they must install/configure or what equivalent capability they need.",
+    "checkpoint side effects are visible before the procedure.",
+    "TDD no longer points to missing artifacts, or those artifacts exist and are useful.",
+    "Handoff records exactly which skill files changed and which source-backed claims were used."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+    "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+    "/home/abhmul/Documents/ai-tools-intro/skills/checkpoint/SKILL.md",
+    "/home/abhmul/Documents/ai-tools-intro/skills/tdd/SKILL.md",
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T010-skills-implementation.md"
+  ],
+  "worker_token_budget": 150000
+}

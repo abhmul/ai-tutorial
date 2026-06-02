@@ -1,0 +1,75 @@
+{
+  "id": "T009",
+  "type": "implementation",
+  "priority": 90,
+  "status": "pending",
+  "dependencies": ["T008"],
+  "title": "Implement hook documentation and Codex config fixes",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T007-implementation-planning.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T008-source-claim-verification.md",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/hooks.json",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_codex_hooks.py"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/hooks/claude/settings.snippet.json",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/claude/destructive-guard.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/claude/auto-mode.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/destructive-guard.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/auto-mode.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/pi/destructive-guard.ts",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/lib/destructive-policy.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/lib/auto-mode-state.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/lib/obsidian-guard.py",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_claude_hooks.py",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_obsidian_guard.py",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_pi_hooks.py"
+    ]
+  },
+  "scope": [
+    "Edit only hook-related files and tests unless a directly necessary copied/user-facing Codex config reference is discovered elsewhere; if so, document it in the handoff rather than editing unrelated shared docs in this task.",
+    "Fix stale Codex configuration under hooks/: use T008-verified current syntax for the hooks feature key and profile placement. If the high-privilege auto profile remains, show it as an advanced separate profile-file example such as ~/.codex/auto.config.toml, not as [profiles.auto] in the main config.",
+    "Update hook documentation so author-vault paths are not presented as portable commands. Prefer repository-relative examples or agent-assisted customization instructions. The user prefers agents to help install/customize skills, hooks, and other tools rather than one-click scripts or blind manual copying; keep human review and safety warnings explicit.",
+    "Frame destructive hooks, Obsidian guard, and auto-mode as advanced opt-in accident guards and workflow examples, not security boundaries and not beginner defaults.",
+    "Document prerequisites and behavior in plain language: Bash, jq for Claude/Codex hook parsing, python3 for the Obsidian classifier, harness-specific hook/extension support, global auto-mode toggle files, project opt-outs, fail-closed behavior where relevant, and the temporary Obsidian confirmation file.",
+    "Update hook tests to match the new Codex snippet layout. If creating a new profile snippet such as hooks/codex/auto.config.snippet.toml, add or adjust tests so stale keys do not remain expected."
+  ],
+  "goals": [
+    "Update /home/abhmul/Documents/ai-tools-intro/hooks/README.md.",
+    "Update /home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml and create any needed companion snippet for the auto profile.",
+    "Update /home/abhmul/Documents/ai-tools-intro/hooks/tests/test_codex_hooks.py so tests reflect current Codex config guidance.",
+    "Produce /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T009-hooks-codex-implementation.md with changed files, validation, and unresolved issues."
+  ],
+  "non_goals": [
+    "Do not edit README.md, recommendations.md, references.md, or skill files in this task.",
+    "Do not deploy files into ~/.claude, ~/.codex, ~/.pi, or any runtime config directory.",
+    "Do not create installer scripts or recommend blindly running commands without review.",
+    "Do not read /home/abhmul/Documents/ai-tools-intro/tmp/ or /home/abhmul/Documents/ai-tools-intro/archive/."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md.",
+    "Keep setup instructions neutral, factual, and newcomer-readable; define terms when needed.",
+    "Capability/configuration claims must trace to official documentation via T008 or direct verification.",
+    "Do not expose secrets or unrelated shell configuration.",
+    "If running Python tests or uv/pytest, first read /home/abhmul/Documents/vaults/agent-vault/agent-python/README or README.md if present."
+  ],
+  "success_criteria": [
+    "No hook docs present ~/Documents/vaults/agent-vault copy commands as portable newcomer instructions.",
+    "Codex config examples no longer contain codex_hooks or [profiles.auto] unless T008 proves they are current for the intended target version.",
+    "Full-access/no-approval behavior is clearly advanced and elevated-risk, not a default.",
+    "Tests or static checks show the new snippet structure is intentional, and stale test expectations are updated.",
+    "Handoff records any copied/user-facing Codex config references that remain for T011."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+    "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+    "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_codex_hooks.py",
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T009-hooks-codex-implementation.md"
+  ],
+  "worker_token_budget": 150000
+}

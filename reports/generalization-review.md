@@ -2,6 +2,8 @@
 
 This report synthesizes the local audit in [T002](../orchestration/handoffs/T002-local-audit.md) and the freshness check in [T003](../orchestration/handoffs/T003-external-freshness.md). I did not independently re-verify the external sources; capability and configuration facts below rely on T003's 2026-06-02 retrievals. The practical conclusion is that the repository contains useful examples from the author's local agent setup, but several pieces should be clearly separated from the beginner path before they are presented as general-user instructions.
 
+**Implementation status:** this is a historical review from before the T009-T012 implementation pass. The stale Codex examples and author-local setup issues described below were later addressed in the current [`hooks/README.md`](../hooks/README.md), [`hooks/codex/config.snippet.toml`](../hooks/codex/config.snippet.toml), [`hooks/codex/auto.config.snippet.toml`](../hooks/codex/auto.config.snippet.toml), [`skills/README.md`](../skills/README.md), and top-level setup documents. Treat remaining mentions of `codex_hooks`, `[profiles.auto]`, and author-local paths in this report as audit history, not current setup guidance.
+
 ## Executive recommendations
 
 ### Must-fix before using this as general setup guidance

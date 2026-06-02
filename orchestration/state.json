@@ -1,5 +1,5 @@
 {
-  "objective": "Review recent additions to /home/abhmul/Documents/ai-tools-intro/ from /home/abhmul/Documents/vaults/agent-vault/, identify setup-specific and out-of-date content, recommend changes for general users, and create an HTML presentation in /home/abhmul/Documents/ai-tools-intro/reports/.",
+  "objective": "Implement the recommendations from reports/generalization-review.md and reports/generalization-review-presentation.html across /home/abhmul/Documents/ai-tools-intro/, covering items from must-fix through optional. Incorporate current user decisions: include the tmux-based orchestration skill as one possible method among many, mention native subagent workflows and agent-assisted porting, allow README.md files for skill/hook/tool instructions, prefer agent-led installation/customization over scripts or manual installation, and fix outdated Codex configuration in hooks/.",
   "constraints": {
     "repo": "/home/abhmul/Documents/ai-tools-intro",
     "orchestration_dir": "/home/abhmul/Documents/ai-tools-intro/orchestration",
@@ -83,32 +83,82 @@
     {
       "id": "W1",
       "name": "Local setup-specific audit",
-      "covered_by": ["T002"],
+      "covered_by": [
+        "T002"
+      ],
       "purpose": "Inspect tutorial skills, hooks, recommendations, and relevant source copies for machine-specific assumptions and stale local guidance."
     },
     {
       "id": "W2",
       "name": "External freshness verification",
-      "covered_by": ["T003"],
+      "covered_by": [
+        "T003"
+      ],
       "purpose": "Verify Codex, hook, web-discovery, orchestration, and setup claims against official or primary sources."
     },
     {
       "id": "W3",
       "name": "General-user recommendation synthesis",
-      "covered_by": ["T004"],
+      "covered_by": [
+        "T004"
+      ],
       "purpose": "Turn local and external evidence into concrete recommendations and setup directions for newcomers."
     },
     {
       "id": "W4",
       "name": "HTML presentation creation",
-      "covered_by": ["T005"],
+      "covered_by": [
+        "T005"
+      ],
       "purpose": "Create the final standalone HTML presentation in reports/."
     },
     {
       "id": "W5",
       "name": "Independent final verification",
-      "covered_by": ["T006"],
+      "covered_by": [
+        "T006"
+      ],
       "purpose": "Verify final artifacts against the objective, focus items, evidence standards, and style constraints."
+    },
+    {
+      "id": "W6",
+      "name": "Implementation source and prompt-claim verification",
+      "covered_by": [
+        "T008"
+      ],
+      "purpose": "Verify volatile setup/configuration facts and separate user preferences from factual claims before implementation edits."
+    },
+    {
+      "id": "W7",
+      "name": "Hook and Codex configuration implementation",
+      "covered_by": [
+        "T009"
+      ],
+      "purpose": "Fix hook documentation, current Codex config/profile snippets, and matching tests."
+    },
+    {
+      "id": "W8",
+      "name": "Skill portability implementation",
+      "covered_by": [
+        "T010"
+      ],
+      "purpose": "Frame advanced skills, Ketch prerequisites, Pi/tmux orchestration, native subagent alternatives, checkpoint side effects, and TDD artifact consistency."
+    },
+    {
+      "id": "W9",
+      "name": "Beginner-facing documentation implementation",
+      "covered_by": [
+        "T011"
+      ],
+      "purpose": "Update README, recommendations, and references after hook and skill edits are ready."
+    },
+    {
+      "id": "W10",
+      "name": "Independent implementation verification",
+      "covered_by": [
+        "T012"
+      ],
+      "purpose": "Independently verify all implementation edits and factual/prompt-claim traceability, updating state and spawning fix tasks if needed."
     }
   ],
   "queue": [
@@ -127,7 +177,9 @@
       "priority": 90,
       "task_file": "orchestration/tasks/T002-local-audit.json",
       "handoff": "orchestration/handoffs/T002-local-audit.md",
-      "dependencies": ["T001"],
+      "dependencies": [
+        "T001"
+      ],
       "notes": "Completed local-only audit of skills, hooks, source-copy assumptions, destructive guard, web-discovery, orchestration dispatch, agent-python-like setup, and relevant shell aliases."
     },
     {
@@ -136,7 +188,9 @@
       "priority": 85,
       "task_file": "orchestration/tasks/T003-external-freshness.json",
       "handoff": "orchestration/handoffs/T003-external-freshness.md",
-      "dependencies": ["T001"],
+      "dependencies": [
+        "T001"
+      ],
       "notes": "Completed external freshness verification with official/primary source URLs and verdicts for all focus items."
     },
     {
@@ -145,7 +199,10 @@
       "priority": 70,
       "task_file": "orchestration/tasks/T004-synthesis-recommendations.json",
       "handoff": "orchestration/handoffs/T004-synthesis-recommendations.md",
-      "dependencies": ["T002", "T003"],
+      "dependencies": [
+        "T002",
+        "T003"
+      ],
       "notes": "Created reports/generalization-review.md and synthesis handoff covering all six focus items and later edit backlog."
     },
     {
@@ -154,7 +211,9 @@
       "priority": 60,
       "task_file": "orchestration/tasks/T005-html-presentation.json",
       "handoff": "orchestration/handoffs/T005-html-presentation.md",
-      "dependencies": ["T004"],
+      "dependencies": [
+        "T004"
+      ],
       "notes": "Created standalone HTML presentation in reports/generalization-review-presentation.html."
     },
     {
@@ -163,11 +222,133 @@
       "priority": 50,
       "task_file": "orchestration/tasks/T006-independent-final-verification.json",
       "handoff": "orchestration/handoffs/T006-independent-final-verification.md",
-      "dependencies": ["T005"],
-      "notes": "Independently verified final report and HTML presentation against objective, focus items, source-traceability requirements, style constraints, and repository instructions. No fix tasks needed."
+      "dependencies": [
+        "T005"
+      ],
+      "notes": "Independently verified final report and HTML presentation against objective, focus items, source-traceability requirements, and repository instructions. No fix tasks needed for the prior review objective."
+    },
+    {
+      "id": "T007",
+      "status": "complete",
+      "priority": 95,
+      "task_file": "orchestration/tasks/T007-implementation-planning.json",
+      "handoff": "orchestration/handoffs/T007-implementation-planning.md",
+      "dependencies": [],
+      "notes": "Planned implementation of all generalization-review recommendations, created task files T008-T012, and identified source-verification needs. No content implementation was performed."
+    },
+    {
+      "id": "T008",
+      "status": "complete",
+      "priority": 94,
+      "task_file": "orchestration/tasks/T008-source-claim-verification.json",
+      "handoff": "orchestration/handoffs/T008-source-claim-verification.md",
+      "dependencies": [
+        "T007"
+      ],
+      "notes": "Completed fresh independent source/factual-claim verification before implementation; provided current Codex config/profile snippets, harness/subagent facts, setup facts, and unsupported/soften claim list."
+    },
+    {
+      "id": "T009",
+      "status": "complete",
+      "priority": 90,
+      "task_file": "orchestration/tasks/T009-hooks-codex-implementation.json",
+      "handoff": "orchestration/handoffs/T009-hooks-codex-implementation.md",
+      "dependencies": [
+        "T008"
+      ],
+      "notes": "Implemented hook documentation, current Codex config/profile snippets, and Codex snippet tests; hook test suite passed."
+    },
+    {
+      "id": "T010",
+      "status": "complete",
+      "priority": 80,
+      "task_file": "orchestration/tasks/T010-skills-implementation.json",
+      "handoff": "orchestration/handoffs/T010-skills-implementation.md",
+      "dependencies": [
+        "T009"
+      ],
+      "notes": "Implemented skill framing, setup guidance, orchestration portability, web-discovery prerequisites, checkpoint warning, TDD artifact fix, and skills/README.md."
+    },
+    {
+      "id": "T011",
+      "status": "complete",
+      "priority": 70,
+      "task_file": "orchestration/tasks/T011-docs-references-implementation.json",
+      "handoff": "orchestration/handoffs/T011-docs-references-implementation.md",
+      "dependencies": [
+        "T010"
+      ],
+      "notes": "Implemented top-level README, recommendations, references, and small guide/one-pager sync fixes after hook and skill targets were ready."
+    },
+    {
+      "id": "T012",
+      "status": "complete",
+      "priority": 60,
+      "task_file": "orchestration/tasks/T012-independent-final-verification.json",
+      "handoff": "orchestration/handoffs/T012-independent-final-verification.md",
+      "dependencies": [
+        "T009",
+        "T010",
+        "T011"
+      ],
+      "notes": "Independent final verification accepted T009 hook/Codex edits, T010 skill portability edits, and T011 beginner-facing docs/reference edits after fresh spot-checks against official/primary sources. T012 also made three trivial clarification fixes: marked reports/generalization-review.md as historical, updated README wording for that report, and softened one guide security sentence. No follow-up fix tasks or blockers were created."
     }
   ],
   "artifacts_trust": {
+    "T011_docs_references_implementation": {
+      "status": "verified_accepted_by_T012",
+      "paths": [
+        "/home/abhmul/Documents/ai-tools-intro/README.md",
+        "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+        "/home/abhmul/Documents/ai-tools-intro/references.md",
+        "/home/abhmul/Documents/ai-tools-intro/ai-tools-guide.md",
+        "/home/abhmul/Documents/ai-tools-intro/ai-tools-onepager.md",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T011-docs-references-implementation.md"
+      ],
+      "notes": "T012 independently read the top-level docs and spot-checked official/primary sources for /init, permissions/auto-mode/sandboxing, subagents, skills, context-management, and permission/security fatigue. Verdict accepted after one trivial T012 wording fix in ai-tools-guide.md: exact unsupported pricing/time/context-threshold claims are removed, /init and subagent language is tool-specific, advanced local infrastructure is separated from the beginner path, and references.md supports retained cautionary claims."
+    },
+    "T010_skills_implementation": {
+      "status": "verified_accepted_by_T012",
+      "paths": [
+        "/home/abhmul/Documents/ai-tools-intro/skills/README.md",
+        "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+        "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+        "/home/abhmul/Documents/ai-tools-intro/skills/checkpoint/SKILL.md",
+        "/home/abhmul/Documents/ai-tools-intro/skills/tdd/SKILL.md",
+        "/home/abhmul/Documents/ai-tools-intro/skills/grill-me/SKILL.md",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T010-skills-implementation.md"
+      ],
+      "notes": "T012 independently read the skill files, Pi local docs, Ketch primary README, Agent Skills spec, and relevant Codex/Claude docs. Verdict accepted: orchestration now starts with a portable task/handoff baseline, Pi/tmux is one advanced implementation, native Codex/Claude subagents are tool-specific, Ketch/equivalent prerequisites are explicit, checkpoint side effects are upfront, and stale TDD artifact frontmatter is removed."
+    },
+    "T009_hooks_codex_implementation": {
+      "status": "verified_accepted_by_T012",
+      "paths": [
+        "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+        "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+        "/home/abhmul/Documents/ai-tools-intro/hooks/codex/auto.config.snippet.toml",
+        "/home/abhmul/Documents/ai-tools-intro/hooks/codex/hooks.json",
+        "/home/abhmul/Documents/ai-tools-intro/hooks/tests/test_codex_hooks.py",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T009-hooks-codex-implementation.md"
+      ],
+      "notes": "T012 independently read the changed hook docs/snippets/tests, spot-checked current Codex docs for profile files, features.hooks, hook locations/trust/output shape, subagents/skills, and full-access/no-approval risk, and reran the hook test suite. Verdict accepted: stale codex_hooks and [profiles.auto] guidance is removed from current hook docs/snippets/tests; the separate auto profile is advanced opt-in; hooks are framed as accident guards, not security boundaries."
+    },
+    "T008_source_claim_verification": {
+      "status": "spot_checked_accepted_by_T012",
+      "path": "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T008-source-claim-verification.md",
+      "notes": "T012 did not rely on T008 blindly. It spot-checked central claims against retrieved official/primary sources on 2026-06-02: OpenAI Codex config/hooks/subagents/skills/security docs, Anthropic Claude Code permission-modes/hooks/subagents/agent-teams/skills/memory docs, local Pi README/docs, Ketch README, Python venv and pipx docs, Obsidian CLI docs, Agent Skills specification, and NIST/DOI security-fatigue sources. Claims that T008 marked unsupported were not retained as factual current guidance."
+    },
+    "T007_implementation_planning": {
+      "status": "complete_self_generated_plan",
+      "paths": [
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T007-implementation-planning.md",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T008-source-claim-verification.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T009-hooks-codex-implementation.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T010-skills-implementation.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T011-docs-references-implementation.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T012-independent-final-verification.json"
+      ],
+      "notes": "Created by T007 as a planning artifact, not an independent verification of later implementation. T008 performs fresh source/factual-claim verification; T012 performs final independent verification."
+    },
     "user_focus_items": {
       "status": "verified_covered_by_T006",
       "notes": "T006 verified that reports/generalization-review.md and reports/generalization-review-presentation.html cover all six focus items and distinguish unresolved implementation decisions from settled claims."
@@ -238,8 +419,25 @@
       "status": "complete_verified_objective_satisfied",
       "path": "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T006-independent-final-verification.md",
       "notes": "Final verification accepted T002, T003, T004, T005, the report, and the HTML presentation for the objective. No blockers or fix tasks were created."
+    },
+    "T012_independent_final_verification": {
+      "status": "complete_verified_implementation_accepted",
+      "paths": [
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T012-independent-final-verification.md",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json"
+      ],
+      "notes": "Final implementation verification accepted all T009, T010, and T011 changed files, source-claim traceability, and user-decision handling. No blockers or follow-up task JSON files were created."
+    },
+    "T012_trivial_verifier_corrections": {
+      "status": "verified_accepted_by_T012",
+      "paths": [
+        "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+        "/home/abhmul/Documents/ai-tools-intro/README.md",
+        "/home/abhmul/Documents/ai-tools-intro/ai-tools-guide.md"
+      ],
+      "notes": "T012 made narrow clarification edits during verification: reports/generalization-review.md now labels retained stale Codex/author-local strings as historical audit text, README.md calls that report historical, and ai-tools-guide.md now says permission prompts are not a substitute for review/sandboxing/backups/trusted configuration rather than \"not security.\""
     }
   },
   "blockers": [],
-  "last_updated": "2026-06-02T12:25:09-05:00"
+  "last_updated": "2026-06-02T15:23:22-05:00"
 }

@@ -11,6 +11,10 @@ status: draft
 You are an orchestrator managing a thin control loop for large delegated work to achieve an objective.
 ## Concepts
 
+### Harness
+
+A harness is the program that gives the model tools, files, permissions, and a user interface. Pi, Codex, and Claude Code are different harnesses. Do not assume that a worker command, subagent feature, or permission setting in one harness exists in another.
+
 ### Objective
 
 The overall goal or directive provided by the user. May not be fully specified. Resolution of lack of specification should be executed as tasks (see below) and most sensible choices should be made.
@@ -64,7 +68,7 @@ Common task types:
 - write scaffolding
 - implement
 - verify implementation
-- maintenence
+- maintenance
 - reduce complexity
 - radical re-organization
 - paradigm shift
@@ -96,12 +100,11 @@ The orchestrator has the following default settings:
 - change default only if directed by user.
 ## Loop
 
-
 ```pseudocode
 Init priority queue TASK_QUEUE
 Init empty state `.json` file STATE_FILE with fields:
   1. objective
-  2. constranits
+  2. constraints
   3. queue
   4. artifacts/trust
   5. blockers
@@ -113,7 +116,7 @@ Enqueue "Init State File" task to TASK_QUEUE to
 while TASK_QUEUE is not empty:
   TASK <- TASK_QUEUE.pop()
   while TASK is not complete:
-    spawn worker to work on TASK
+    dispatch a worker using the portable baseline or a verified harness-specific mechanism
     update STATE_FILE
   for NEW_TASK in NEW_TASKS returned by TASK
     enqueue NEW_TASK onto TASK_QUEUE
@@ -123,7 +126,7 @@ return
 ```
 
 Some guidance on loop:
-1. Store tasks as `.json` files
+1. Store tasks as `.json` files.
 2. First task should extract the objective, deliverables, constraints, forbidden reads, and quality gates. It may also do any additional useful setup.
 3. It should return the next useful tasks; begin with discovery/planning if the path is unclear.
 4. Dispatch ready tasks with explicit context files, boundaries, expected outputs, and a handoff path. Workers must not rely on inherited context.
@@ -132,18 +135,34 @@ Some guidance on loop:
 7. All verification tasks require **INDEPENDENT WORKERS**; producers do not raise trust on their own work.
 8. Repeat until the objective is done, blocked, or needs a fresh orchestrator.
 
-To instantiate a worker, use the watcher script in this skill's `references/` directory. Resolve the path relative to this `SKILL.md`; in a normal `.agents` install:
+### Portable worker baseline
+
+Use this baseline before choosing a tool-specific dispatch method. It also works when the current harness has no native subagent feature.
+
+1. Write a task file with the task ID, dependencies, files to read, scope, goals, non-goals, safety rules, success criteria, expected outputs, handoff path, and token budget.
+2. Start a fresh agent session or an official subagent with bounded context. Give it the task file path and any must-read files; do not rely on inherited chat context.
+3. Require a handoff artifact that records what was read, what changed, what was verified, blockers, and follow-up tasks.
+4. Ingest the handoff, inspect changed files, update the queue/state, and verify important claims or implementation work independently.
+
+### Dispatch choices
+
+Pick one mechanism that the current harness actually supports.
+
+- **Native subagents, when available.** [Codex](https://developers.openai.com/codex/subagents) and [Claude Code](https://docs.anthropic.com/en/docs/claude-code/sub-agents) have official subagent workflows. Use the harness's own docs, tools, and permissions. Claude Code also documents [agent teams](https://docs.anthropic.com/en/docs/claude-code/agent-teams) as an experimental advanced workflow; do not treat that as the beginner default.
+- **Pi/tmux external worker.** Pi's [usage docs](https://pi.dev/docs/latest/usage) describe Pi as not providing built-in subagents. The included watcher script is an advanced Pi implementation that starts a separate Pi process in `tmux`; it is not a cross-harness dispatch method.
+- **Manual or other-harness dispatch.** Use the same task-and-handoff pattern in another fresh session. An agent can help adapt the pattern or draft a skill port for a user's preferred harness, but the user must review tool-specific paths, permissions, network access, and syntax.
+
+For the Pi/tmux method, use the watcher script in this skill's `references/` directory. Resolve the path relative to this `SKILL.md`; in a normal `.agents` install:
 
 ```bash
 bash .agents/skills/orchestration/references/pi-worker-watch.sh "<pointer to task>"
 ```
 
-The script starts `pi -p -t "read,grep,find,ls,edit,write,bash" "<pointer to task>"` in a detached `tmux` session, returns when the worker finishes or after 30 minutes, and prints the last 25 log lines. If the worker is still running, use the printed `--watch <run-dir>` command for the next check. Do not inline or reconstruct the script. If `tmux` is unavailable, report that the worker mechanism is unavailable.
+The script starts `pi -p -t "read,grep,find,ls,edit,write,bash" "<pointer to task>"` in a detached `tmux` session, returns when the worker finishes or after the wait window, and prints recent log lines. If the worker is still running, use the printed `--watch <run-dir>` command for the next check. Do not inline or reconstruct the script. If `pi` or `tmux` is unavailable, report that this worker mechanism is unavailable and fall back to the portable baseline.
 
-Workers spawned with `pi-worker-watch.sh` have web access if the `web-discovery` skill is available in `.agents`
+A Pi worker can use only the tools and skills installed and allowed in that Pi session. Do not assume web access unless the web-discovery skill and a working search-plus-retrieval setup are available.
 
 Remember **EVERYTHING IS A TASK**. Delegate everything except orchestration loop management.
-
 
 ## Contract
 - **DO NOT READ**:

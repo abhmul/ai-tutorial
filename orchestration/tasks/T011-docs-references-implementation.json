@@ -1,0 +1,74 @@
+{
+  "id": "T011",
+  "type": "implementation",
+  "priority": 70,
+  "status": "pending",
+  "dependencies": ["T010"],
+  "title": "Implement beginner-facing documentation and reference updates",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T007-implementation-planning.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T008-source-claim-verification.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T009-hooks-codex-implementation.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T010-skills-implementation.md",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/references.md"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/ai-tools-guide.md",
+      "/home/abhmul/Documents/ai-tools-intro/ai-tools-onepager.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/auto.config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/skills/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/checkpoint/SKILL.md"
+    ]
+  },
+  "scope": [
+    "Edit top-level beginner-facing documentation and references after hook and skill edits are available for linking. Do not redo T009/T010 edits unless a small consistency fix is unavoidable; record such fixes explicitly.",
+    "Update README.md so it distinguishes beginner materials from advanced/local examples, accounts for the actual skills and hooks present in the repo, and uses README.md files as acceptable homes for setup instructions.",
+    "Update recommendations.md while preserving the high-level path: try chat tools, try one agentic tool on a real project, learn permissions, manage context. Add the local-vs-general distinction and avoid making advanced hooks, aliases, or high-privilege profiles sound like defaults.",
+    "In recommendations.md, incorporate the user's current decisions: the tmux/Pi orchestration skill can be provided as one method among many; native subagent workflows should be mentioned where verified; agents can help port/adapt the skill or task pattern to preferred tools; agent-assisted installation/customization is preferred over blind scripts or manual copy-paste.",
+    "Verify, cite, or soften volatile claims in recommendations.md: paid tiers/pricing, response-time ranges, /init availability, sandboxing and auto-mode behavior, context-size degradation around 100-150k tokens, and permission-fatigue claims.",
+    "Update references.md only for concrete needs discovered in T008 or this task. Add official documentation for retained capability/configuration claims and primary or peer-reviewed sources for retained human-behavior cautionary claims. Verify DOI/arXiv/figure details before changing existing entries.",
+    "Inspect ai-tools-guide.md and ai-tools-onepager.md only if the edits introduce claims that must be synchronized with them, or if T008/T007 identifies a likely mismatch. If they are not edited, state why in the handoff."
+  ],
+  "goals": [
+    "Update /home/abhmul/Documents/ai-tools-intro/README.md.",
+    "Update /home/abhmul/Documents/ai-tools-intro/recommendations.md.",
+    "Update /home/abhmul/Documents/ai-tools-intro/references.md only if needed for retained claims.",
+    "Produce /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T011-docs-references-implementation.md."
+  ],
+  "non_goals": [
+    "Do not edit reports/generalization-review.md or reports/generalization-review-presentation.html unless creating an erratum task instead.",
+    "Do not introduce new hard-coded model version names except specific examples or verified product-version caveats already needed for Codex config.",
+    "Do not read /home/abhmul/Documents/ai-tools-intro/tmp/ or /home/abhmul/Documents/ai-tools-intro/archive/.",
+    "Do not read private shell configuration."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md.",
+    "Audience is newcomers with no AI experience; use plain language and define terms.",
+    "Tone must be neutral and factual; no hype, slogans, or emoji.",
+    "Capability claims must trace to official documentation; cautionary claims must come from primary or peer-reviewed sources in references.md, not inline.",
+    "Keep guide and one-pager in sync where applicable.",
+    "Do not use Python unless you first read /home/abhmul/Documents/vaults/agent-vault/agent-python/README or README.md if present."
+  ],
+  "success_criteria": [
+    "README.md accurately frames beginner materials versus advanced/local examples and links the relevant README.md or skill files.",
+    "recommendations.md no longer presents advanced hooks/aliases/high-privilege auto profiles as beginner defaults.",
+    "All retained capability/configuration claims have official-source traceability via references.md, inline links, or T008-backed source links as appropriate to the file.",
+    "Human-behavior cautions are either supported in references.md by primary/peer-reviewed sources or softened into personal workflow advice.",
+    "Handoff lists changed files, source-backed claims used, claims softened/removed, and any guide/one-pager sync decision."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/README.md",
+    "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T011-docs-references-implementation.md"
+  ],
+  "worker_token_budget": 150000
+}

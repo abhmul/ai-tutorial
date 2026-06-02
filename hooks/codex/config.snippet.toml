@@ -1,6 +1,4 @@
+# ~/.codex/config.toml
+# Codex hooks are enabled by default in current Codex, but this key is the current explicit form.
 [features]
-codex_hooks = true
-
-[profiles.auto]
-approval_policy = "never"
-sandbox_mode = "danger-full-access"
+hooks = true

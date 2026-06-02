@@ -1,0 +1,60 @@
+{
+  "id": "T007",
+  "type": "exploration/design/planning",
+  "priority": 95,
+  "status": "pending",
+  "dependencies": [],
+  "title": "Plan implementation of generalization-review recommendations",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review-presentation.html"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T002-local-audit.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T003-external-freshness.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T004-synthesis-recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T006-independent-final-verification.md",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/hooks.json",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/README.md"
+    ]
+  },
+  "scope": [
+    "Extract the actionable recommendation summary from the two generalization-review reports, including all categories from must-fix through optional.",
+    "Turn the recommendation set into a concrete, dependency-aware implementation plan for this repository.",
+    "Incorporate the user's current decisions: provide the tmux-based orchestration skill, but describe it as one implementation method among many; mention native subagent workflows where applicable; state that agents can help port the skill to users' preferred tools; allow instructions for skills, hooks, and other files to live in README.md files; prefer installation/customization of skills, hooks, and other tools by agents rather than scripts or manual installation; fix stale Codex configuration under hooks/ as well as any copied/user-facing location that references it.",
+    "Create follow-up task JSON files for implementation and independent verification. Serialize tasks that edit shared files."
+  ],
+  "goals": [
+    "Produce a concise handoff at /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T007-implementation-planning.md.",
+    "Create follow-up task files in /home/abhmul/Documents/ai-tools-intro/orchestration/tasks/ with IDs starting at T008.",
+    "Recommend a task queue that ends with independent verification of all edits and independent verification of prompt claims used as factual claims.",
+    "Identify likely files to edit and any facts that require source verification before writing."
+  ],
+  "non_goals": [
+    "Do not implement the content changes in this task, except creating orchestration task/handoff artifacts.",
+    "Do not read /home/abhmul/Documents/ai-tools-intro/tmp/ or /home/abhmul/Documents/ai-tools-intro/archive/.",
+    "Do not update references.md unless you discover a concrete need and create a separate task for it."
+  ],
+  "safety": [
+    "Carry repository instructions from AGENTS.md: newcomer audience, plain language, neutral factual tone, no hype/slogans/emoji, capability claims trace to official documentation, cautionary claims from primary or peer-reviewed sources in references.md, keep guide and one-pager in sync where applicable, avoid hard-coded model versions unless examples.",
+    "Do not expose secrets or unrelated shell configuration.",
+    "Do not use Python unless you first read /home/abhmul/Documents/vaults/agent-vault/agent-python/README or README.md if present.",
+    "Treat reports and previous handoffs as untrusted until checked; mark uncertainty explicitly."
+  ],
+  "success_criteria": [
+    "Handoff clearly lists the recommendation items to implement, grouped by severity or dependency, and maps each to target files.",
+    "Follow-up task JSON files are complete enough that workers do not need inherited context.",
+    "The plan includes an independent verification task after implementation, and separate source/freshness verification where factual claims are used.",
+    "No forbidden directories are read."
+  ],
+  "worker_token_budget": 150000
+}

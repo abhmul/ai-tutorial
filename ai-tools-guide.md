@@ -21,7 +21,7 @@ Any AI tool is built from three parts. Identifying all three lets you evaluate a
 
 **Model — the source of intelligence.** A model reasons over text. By itself it keeps no memory between sessions, takes no actions, and its knowledge stops at a fixed training cutoff date. Claude Code runs on the Claude model family, offered in tiers — a most-capable, a balanced, and a fast option — and you choose per task.
 
-**Harness — how the model acts in the world.** The harness is the code around the model that lets it read and write your files, run commands and read their output, search and fetch web pages, delegate to helper "subagents," and follow instructions you define. Its central mechanism is a loop: act, observe the result, correct, repeat. That loop is the difference between a chatbot, which returns text and stops, and an agent, which can check and revise its own work. Claude Code asks permission before risky actions and has a read-only "plan mode."
+**Harness — how the model acts in the world.** The harness is the code around the model. Depending on the tool, it may read and write your files, run commands and read their output, search and fetch web pages, delegate to helper "subagents," and follow instructions you define. Its central mechanism is a loop: act, observe the result, correct, repeat. That loop is the difference between a chatbot, which returns text and stops, and an agent, which can check and revise its own work. Claude Code asks permission before risky actions and has a read-only "plan mode."
 
 **Interface — how you use it.** Claude Code runs in a terminal, and also in code editors (VS Code, JetBrains), a desktop app, and a website. You instruct it in plain language.
 
@@ -43,7 +43,7 @@ Each entry: a workflow, why it needs an agent rather than a chatbot, and the mai
 
 ### 1. Literature review
 
-Workflow: state your question and scope; have it search and fetch real papers, read the actual pages, and write structured notes to a file; use subagents for subtopics in parallel; require every citation to list the source it retrieved, with a resolvable DOI (a permanent link that resolves to the exact paper).
+Workflow: state your question and scope; have it search and fetch real papers, read the actual pages, and write structured notes to a file; if your tool supports subagents, use them for subtopics in parallel; require every citation to list the source it retrieved, with a resolvable DOI (a permanent link that resolves to the exact paper).
 
 Why an agent: a chatbot produces citations from memory and invents plausible ones; an agent can retrieve and quote the actual source and leave you an auditable file.
 
@@ -67,7 +67,7 @@ Caution: this is not a use case the vendor documents; it is general harness feat
 
 ### 4. Grant design and planning
 
-Workflow: put the funder's call, your CV, and prior drafts in a project folder as persistent context; have it fetch the official guidelines and extract a requirements checklist; co-draft sections as editable files; use subagents to critique against the checklist and reviewer-style questions.
+Workflow: put the funder's call, your CV, and prior drafts in a project folder as persistent context; have it fetch the official guidelines and extract a requirements checklist; co-draft sections as editable files; if your tool supports subagents, use them to critique against the checklist and reviewer-style questions.
 
 Why an agent: it works from the current call text rather than stale memory, and maintains a consistent multi-file draft.
 
@@ -75,11 +75,11 @@ Caution: fluent text can be wrong about feasibility or prior work; domain-expert
 
 ### 5. Critical thinking and the Socratic method
 
-Workflow: write your claim to a file; instruct it to argue against you (strongest counterarguments, weakest link, no concession until you defend each point); make it push further and append the exchange so it accumulates; run an independent critic subagent on the argument cold; require cited evidence, which you judge.
+Workflow: write your claim to a file; instruct it to argue against you (strongest counterarguments, weakest link, no concession until you defend each point); make it push further and append the exchange so it accumulates; if available, run an independent critic subagent on the argument cold; require cited evidence, which you judge.
 
 Why an agent: it can fetch real evidence against your claim, keep the argument across sessions, and run independent critics with fresh context.
 
-Caution: AI is sycophantic — it tends to agree with you, and human raters sometimes prefer a convincing wrong answer. It also confabulates: confident, invented objections that change when re-asked. Use it as a sparring partner, not an authority; re-ask challenges in a fresh subagent and discount objections that do not survive.
+Caution: AI is sycophantic — it tends to agree with you, and human raters sometimes prefer a convincing wrong answer. It also confabulates: confident, invented objections that change when re-asked. Use it as a sparring partner, not an authority; re-ask challenges in a fresh chat or subagent and discount objections that do not survive.
 
 ---
 
@@ -93,7 +93,7 @@ Inherent to current AI, not imminent fixes:
 - It tends to agree with you, which undermines using it to check your own reasoning.
 - It does not retain context between sessions unless you provide it.
 - Cost scales with usage; long sessions and large projects cost more.
-- Permission prompts are guardrails, not security. Do not auto-approve blindly.
+- Permission prompts are guardrails, not a substitute for review, sandboxing, backups, or trusted configuration. Do not auto-approve blindly.
 
 Used where reality checks the work, these are manageable. Where only you can check, stay in the loop.
 
@@ -106,7 +106,7 @@ These tools differ mainly in harness and interface, not in some hidden intellige
 | Tool | In the three-part lens |
 |---|---|
 | [ChatGPT](https://chatgpt.com/) | OpenAI model; chat-first harness (agentic features newer/optional); web and app interface. |
-| [Claude Code](https://code.claude.com/docs/en/overview) | Claude model; full agentic harness (files, shell, web, subagents); terminal/editor interface. |
+| [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) | Claude model; full agentic harness (files, shell, web, subagents); terminal/editor interface. |
 | [OpenAI Codex CLI](https://developers.openai.com/codex/cli) | OpenAI model; agentic harness, same category as Claude Code; terminal interface. |
 | [Cursor](https://cursor.com/) | Configurable models; harness integrated into a code editor; the editor is the interface. |
 | [GitHub Copilot](https://github.com/features/copilot) | Configurable models; assistance embedded in existing coding tools and editors. |
@@ -115,7 +115,7 @@ These tools differ mainly in harness and interface, not in some hidden intellige
 
 ## Next steps
 
-1. Read the [overview and quickstart](https://code.claude.com/docs/en/overview) in the official docs; use the official install steps, not a second-hand command.
+1. Read the [overview and quickstart](https://docs.anthropic.com/en/docs/claude-code/overview) in the official docs; use the official install steps, not a second-hand command.
 2. Learn basic [Markdown](https://www.markdownguide.org/basic-syntax/), the format these tools read and write.
 3. See a [real workflow](https://www.youtube.com/watch?v=-QFHIoCo-Ko) and a [skills workshop](https://www.youtube.com/watch?v=pFsfax19yOM).
 4. Start with a task that has a checkable answer, so you learn where the tool is reliable before relying on it where it is not.

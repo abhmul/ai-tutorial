@@ -12,6 +12,7 @@ HOOKS_DIR = Path(__file__).resolve().parents[1]
 GUARD = HOOKS_DIR / "codex" / "destructive-guard.sh"
 AUTO = HOOKS_DIR / "codex" / "auto-mode.sh"
 CONFIG_SNIPPET = HOOKS_DIR / "codex" / "config.snippet.toml"
+AUTO_CONFIG_SNIPPET = HOOKS_DIR / "codex" / "auto.config.snippet.toml"
 
 pytestmark = pytest.mark.skipif(shutil.which("jq") is None, reason="Codex hook wrappers require jq")
 
@@ -156,10 +157,24 @@ def test_auto_mode_project_opt_out_suppresses_permission(hook_dirs: tuple[Path, 
     assert result.stderr == ""
 
 
-def test_config_snippet_keeps_guarded_full_access_profile() -> None:
-    config = tomllib.loads(CONFIG_SNIPPET.read_text())
+def test_base_config_snippet_uses_current_hooks_feature_key_only() -> None:
+    text = CONFIG_SNIPPET.read_text()
+    config = tomllib.loads(text)
+    deprecated_hook_key = "codex" + "_hooks"
+    deprecated_profile_table = "[profiles" + ".auto]"
 
-    assert config["features"]["codex_hooks"] is True
-    auto_profile = config["profiles"]["auto"]
-    assert auto_profile["approval_policy"] == "never"
-    assert auto_profile["sandbox_mode"] == "danger-full-access"
+    assert config["features"]["hooks"] is True
+    assert deprecated_hook_key not in text
+    assert "profiles" not in config
+    assert deprecated_profile_table not in text
+
+
+def test_auto_profile_snippet_is_separate_top_level_profile_file() -> None:
+    text = AUTO_CONFIG_SNIPPET.read_text()
+    config = tomllib.loads(text)
+    deprecated_profile_table = "[profiles" + ".auto]"
+
+    assert config["approval_policy"] == "never"
+    assert config["sandbox_mode"] == "danger-full-access"
+    assert "profiles" not in config
+    assert deprecated_profile_table not in text

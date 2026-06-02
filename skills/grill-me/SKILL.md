@@ -6,6 +6,6 @@ Interview me relentlessly about every aspect of this until we reach a shared und
 
 Ask the questions one at a time.
 
-If a question can be answered by exploring relevant project context (vault, codebase, literature, prior work, formal tools) or from rigorous first-principles, do that instead.
+If a question can be answered by exploring relevant project context (vault, codebase, literature, prior work, formal tools) or from rigorous first-principles, do that instead. File, network, and literature exploration only applies when the current agent has the needed permissions and tools; otherwise ask the user or mark the branch unresolved.
 
 At natural milestones, and roughly every 8-12 questions if no milestone appears, give a compact human-readable decision-tree status update with nested bullets, not ledger previews. Name the resolved areas, consequences, caveats, open branches, and your recommended next branch. When the tree is ready for handoff, give a final state review.

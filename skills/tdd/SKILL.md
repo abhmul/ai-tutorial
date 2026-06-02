@@ -5,9 +5,6 @@ tags:
   - skill
   - ai-generated
 status: draft
-artifacts:
-  - artifacts/tdd--SKILL/audience-purpose.md
-  - artifacts/tdd--SKILL/outline.md
 ---
 
 # Test-Driven Development

@@ -1,0 +1,5 @@
+# ~/.codex/auto.config.toml
+# Advanced opt-in profile for isolated environments only.
+# This removes approval prompts and filesystem sandboxing; do not use it as a beginner default.
+approval_policy = "never"
+sandbox_mode = "danger-full-access"

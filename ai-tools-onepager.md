@@ -31,7 +31,7 @@ Evidence for these claims: [references.md](./references.md).
 ## The same lens, every tool
 
 - [ChatGPT](https://chatgpt.com/) — OpenAI model; chat-first harness; web/app interface.
-- [Claude Code](https://code.claude.com/docs/en/overview) — Claude model; full agentic harness; terminal/editor interface.
+- [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) — Claude model; full agentic harness; terminal/editor interface.
 - [OpenAI Codex CLI](https://developers.openai.com/codex/cli) — OpenAI model; agentic harness; terminal interface.
 - [Cursor](https://cursor.com/) — configurable models; harness inside a code editor.
 - [GitHub Copilot](https://github.com/features/copilot) — configurable models; embedded in existing coding tools.

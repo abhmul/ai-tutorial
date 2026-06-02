@@ -1,16 +1,17 @@
 # Recommendations: Getting Started with AI Tools
 
-Here are my recommendations to get started with basic AI tool usage and to understand the core principles of using these tools effectively and safely.
+These are my practical recommendations for basic AI tool usage and for understanding the core principles of using these tools effectively and safely. The path is: try chat tools, try one agentic tool on a real project, learn permissions, and manage context. The advanced skills and hooks in this repository are examples you can inspect later; they are not beginner defaults.
 
 ## Overview
 
-This guide moves from chat-based use of language models, to agentic tools that act on your filesystem and terminal, to the permission and misalignment concerns that come with them, and finally to further resources. Expect your productivity to be low at first — these tools have a real learning curve.
+This guide moves from chat-based use of language models, to agentic tools that act on your filesystem and terminal, to the permission and misalignment concerns that come with them, and finally to further resources. Expect your productivity to be low at first because these tools take practice.
 
 - [Recommendations: Getting Started with AI Tools](#recommendations-getting-started-with-ai-tools)
   - [Overview](#overview)
   - [Quick start](#quick-start)
   - [1. Get a feel for language model capabilities](#1-get-a-feel-for-language-model-capabilities)
   - [2. Move from chat to agentic tools](#2-move-from-chat-to-agentic-tools)
+    - [Local examples versus beginner defaults](#local-examples-versus-beginner-defaults)
     - [Permissions: a caution](#permissions-a-caution)
     - [Misalignment](#misalignment)
   - [3. Resources once you're going](#3-resources-once-youre-going)
@@ -21,22 +22,23 @@ This guide moves from chat-based use of language models, to agentic tools that a
 A condensed version of the steps below; each links to the section that expands it.
 
 1. **Try a chat model on real work.** Use [ChatGPT or Claude](#1-get-a-feel-for-language-model-capabilities) on something you are actually working on, and think about how to give it the relevant context.
-2. **Gauge real capability with a more powerful tier.** Reasoning depth heavily affects output quality; temporarily subscribe to a more powerful version, and for research-level math use the most capable tier.
+2. **Compare capability deliberately.** Free plans are enough to learn the basics. If a task matters and the tool offers a paid or reasoning-focused mode, try it for a bounded period and check current official pricing before subscribing.
 3. **Debug failures in a separate chat.** When it gets something wrong, open a separate chat with the prompt, the response, and what the problem was.
-4. **Move to an agentic tool.** Install [Claude Code or Codex](#2-move-from-chat-to-agentic-tools) and run `/init` on a real project.
+4. **Move to an agentic tool.** Install [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) or [Codex](https://developers.openai.com/codex) and try it on a real project. Claude Code and Codex document `/init` commands; for other tools, check the tool's own setup docs.
 5. **Learn it deliberately.** Ask the tool to help you learn it, and keep a separate notes file of usage patterns.
-6. **Never blind-approve permissions.** Review every [permission prompt](#permissions-a-caution); track what you approve, and reduce prompts with sandboxing or auto-mode.
-7. **Manage context and misalignment.** When the agent misunderstands you, [debug with it](#misalignment) and keep its context buffer relevant and concise.
+6. **Never blind-approve permissions.** Review every [permission prompt](#permissions-a-caution), track what you approve, and start from normal permissions or sandboxing rather than high-privilege no-approval modes.
+7. **Keep advanced examples separate.** The repository's [skills](skills/README.md) and [hooks](hooks/README.md) can be useful, but install or adapt them only after review.
+8. **Manage context and misalignment.** When the agent misunderstands you, [debug with it](#misalignment) and keep its context buffer relevant and concise.
 
 ## 1. Get a feel for language model capabilities
 
-Start with [ChatGPT](https://chatgpt.com/) or [Claude AI](https://claude.ai/) to get a feel for how language models can be useful in general, as well as their capabilities. The free version can be useful to familiarize yourself with the technology, but the basic paid versions (~$20/month) are more powerful and a better gauge of what these tools can do.
+Start with [ChatGPT](https://chatgpt.com/) or [Claude AI](https://claude.ai/) to get a feel for how language models can be useful in general. The free versions are enough to learn the interaction pattern. Paid plans, model names, and model features change over time, so check the official product pages when deciding whether a subscription is worth it for your use case.
 
-I recommend the following approach: when you are working on something, try to use ChatGPT or Claude to help with it. Consider how to give it the relevant context, then problem-solve when it doesn't get something right. A good technique is to use the model to help you debug the issue, since the issue may be arising from a misunderstanding embedded in the model's context.
+I recommend the following approach: when you are working on something, try to use ChatGPT or Claude to help with it. Consider how to give it the relevant context, then problem-solve when it does not get something right. A good technique is to use the model to help you debug the issue, since the issue may be arising from a misunderstanding embedded in the model's context.
 
-Going through this process builds intuition for how to get better results from language models.
+Going through this process builds intuition for how to get better results from language models. For hard tasks, it can be useful to compare the normal mode with a more capable or reasoning-focused mode if the tool offers one. Treat this as an experiment, not a guarantee of correctness.
 
-Keep in mind that the reasoning depth (e.g. ChatGPT Instant vs Thinking vs Pro) will heavily influence the quality of the output for most tasks. Getting the best sense of the capabilities of these tools will require temporarily subscribing to the more powerful versions. If you are working on research-level problems, in particular math, I recommend using the ChatGPT Pro version and stating your problem rigorously and clearly. You may find it is able to solve very difficult problems. Here is my template for difficult math problems:
+If you are working on research-level problems, especially math, state your problem rigorously and clearly. Here is my template for difficult math problems:
 
 ```text
 [Problem statement, with all notation defined and assumptions stated. Be as rigorous and precise as possible. If there are multiple parts, break them into separate steps.]
@@ -45,64 +47,75 @@ Keep in mind that the reasoning depth (e.g. ChatGPT Instant vs Thinking vs Pro) 
 
 [Pose your conjecture/question or series of conjectures/questions that build on each other.]
 
-First verify my claims. Then work your way to solve these questions.
+First verify my claims. Then work your way toward these questions.
 
-Develop a strategy and workflow to do so. Then execute your approach. If you run into obstructions come back to the drawing board. Decide whether to re-evaluate your current approach or try a completely new approach. As you try more things you will develop a picture of what is going on. Continue this process until you arrive at a solution. Verify your solution rigorously. Do not give up if things seem tough. You have the capability to obtain the novel results if you persevere relentlessly.
+Develop a strategy and workflow to do so. Then execute your approach. If you run into obstructions, explain the obstruction and come back to the drawing board. Decide whether to re-evaluate your current approach or try a different approach. As you try more things, develop a picture of what is going on. Continue until you arrive at a solution or a clear explanation of why the current path is blocked. Verify your solution rigorously.
 ```
 
-Requesting that it first verify your claims provides important exercises that can seed its context before it tackles the hard problem. This process may also trigger it to retrieve relevant information. It may find an alternative approach that you hadn't thought of, or it may identify a mistake in your reasoning.
+Requesting that it first verify your claims provides useful exercises that can seed its context before it tackles the hard problem. This process may also trigger it to retrieve relevant information. It may find an alternative approach that you had not thought of, or it may identify a mistake in your reasoning.
 
-It is important to check the final work it produces. A good exercise is to break down the argument yourself and simplify it; you can do this interactively with the model. Note that the ChatGPT Pro version can take ~15-30 minutes to respond, so for this interactive step you may want to use ChatGPT Thinking, which takes 1-5 minutes to respond.
+Check the final work it produces. A good exercise is to break down the argument yourself and simplify it; you can do this interactively with the model. Do not rely on unsupported citations, unverified calculations, or plausible-sounding proofs without checking them.
 
 ## 2. Move from chat to agentic tools
 
-The above approach is a good way to get a feel for the capabilities of language models, but it is only a limited way to use them. The primary way that language models are used in industry is through agentic tools. These tools have a language model at their core, but they also have a "harness" that allows the language model to interact with the world. This can include:
+The above approach is a good way to get a feel for language models, but it is only one way to use them. A common next step is an agentic tool. An agentic tool has a language model at its core, plus a harness: the program that gives the model tools, files, permissions, and a user interface. A harness can allow the model to:
 
-- reading and writing files,
-- running commands and reading their output,
-- fetching web pages,
-- and even running sub-agents with fresh context.
+- read and write files,
+- run commands and read their output,
+- fetch web pages when web access is available,
+- and, in some tools, run subagents with separate context.
 
-The interface is typically a *terminal user interface* (TUI). *Integrated development environments* (IDEs) like VSCode or Cursor let you interact with the tool in a more natural way.
+The interface is often a terminal user interface, or TUI. Integrated development environments, or IDEs, such as VSCode or Cursor let you interact with an agentic tool inside an editor.
 
-To get started, I recommend installing [Claude Code](https://code.claude.com/docs/en/overview) or [Codex](https://developers.openai.com/codex), depending on whether you have a subscription to Anthropic or OpenAI. They are good, general-purpose agentic tools that work well out of the box, with plenty of features to implement more complicated workflows.
+To get started, I recommend installing [Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) or [Codex](https://developers.openai.com/codex), depending on whether you have access to Anthropic or OpenAI. They are documented, general-purpose agentic tools and are good first tools to compare.
 
-To try them out, identify a project you are working on that may benefit from the capabilities of agentic tools. A coding project is a good candidate, but these can also be used for non-coding projects, such as literature review, presentation planning, or grant design. The important addition these tools provide over a chatbot is that they can interact with your filesystem and terminal, so they can automate a lot of tasks you would otherwise do manually. They can also use your filesystem to maintain persistent context across sessions, and naturally pull from relevant files without you having to tell them to.
+To try one out, identify a real project that may benefit from file and terminal access. A coding project is a good candidate, but these tools can also help with non-coding projects such as literature review, presentation planning, or grant design. The important difference from a chatbot is that an agentic tool can inspect project files, edit them, run commands, and maintain persistent notes across sessions when you ask it to.
 
-Most tools provide an `/init` command that sets up the files they need in your project. From there, I recommend asking the tool to help you learn how to use it for your specific tasks. You can ask it to help you keep notes in a separate file about usage patterns you develop and things you learn about the tool as you go. **Expect your productivity to be quite low at first as you learn how to use these tools.** They can be surprisingly effective for basic tasks, but there is a learning curve to using them for more complex tasks.
+Claude Code and Codex include `/init` commands for setting up persistent project instructions. For another tool, check whether it has an equivalent. From there, ask the tool to help you learn how to use it for your specific tasks. You can ask it to keep notes in a separate file about usage patterns you develop and things you learn as you go. Expect your productivity to be low at first; start with simple tasks and build trust gradually.
+
+### Local examples versus beginner defaults
+
+This repository contains local examples that are useful to study, but they are not required to get started.
+
+- [`skills/README.md`](skills/README.md) explains the skill examples. `grill-me` and `checkpoint` are the most beginner-relevant examples; `web-discovery`, `orchestration`, and `tdd` are more advanced. Checkpoint writes daily notes and may create Git commits, so review that side effect before using it.
+- [`hooks/README.md`](hooks/README.md) explains hook and extension examples for Claude Code, Codex, and Pi. A hook is a command or extension that the harness runs around a tool event, such as a proposed shell command. These hooks are advanced, opt-in accident guards. They are not security boundaries and should not be installed by blind copy-paste.
+- The orchestration skill provides a portable task-and-handoff pattern for large work. Its included Pi/tmux watcher is one advanced implementation method, not a general subagent system. Claude Code and Codex have their own native subagent workflows.
+
+Prefer agent-assisted installation and customization with human review. A good setup request is: "Inspect this README and my current tool config, then draft a small deployment plan and diff. Do not apply it until I review it." This is safer than blindly running an installer or copying a config snippet you do not understand.
 
 ### Permissions: a caution
 
-Agentic tools typically have permission prompts that ask you to approve certain actions, such as reading a file or running a command. These are important guardrails, but they are not a security mechanism. Do not auto-approve these prompts without checking what they are asking for. If you do, you may end up with the tool doing something you didn't intend, such as deleting files or sending data to the internet. Always review the permissions it is asking for and make sure they align with what you want it to do.
+Agentic tools usually ask you to approve certain actions, such as reading a file, editing a file, running a command, or using the network. Treat a permission prompt as a decision point, not as proof that the action is safe. Read what the tool is asking to do and check whether it matches the task.
 
-A common issue users face is *permission fatigue* due to the large number of permission prompts. This can lead to users blindly approving permissions without checking them. To mitigate this, I recommend keeping a separate file with notes about the permissions you have approved and the patterns you have developed for when to approve certain permissions. You can then ask the agent to implement better guardrails based on these patterns.
+Repeated prompts can create permission fatigue: after many prompts, people become more likely to choose the easy approval path. To reduce that risk, keep a short notes file with permission patterns you have approved and patterns you do not want to approve. You can then ask the agent to help draft better instructions, project rules, or guardrails based on those notes, but review the changes before enabling them.
 
-Alternatively, you can use some of the features of agentic tools to reduce the number of permission prompts. Some common approaches include:
+Common ways to reduce prompt volume include:
 
-- *sandboxing* — running the tool in a sandboxed environment where it has limited access to your filesystem and terminal. Both Claude Code and Codex have features that allow you to do this.
-- *auto-mode* — Claude Code has an auto-mode feature that uses a separate model to review permissions and escalate risky commands to you. This can reduce permission fatigue while still maintaining some level of safety. However, it does use some of your usage budget.
+- **Sandboxing and permission modes.** Start from the tool's normal permission and sandbox settings. [Claude Code permission modes](https://docs.anthropic.com/en/docs/claude-code/permission-modes) and [Codex approvals and security](https://developers.openai.com/codex/agent-approvals-security) document ways to control what the tool can do. Use the smallest access level that fits the task.
+- **Auto permission review.** Claude Code documents an auto permission mode that uses a separate classifier model to reduce prompts and escalate riskier commands. It can add cost or latency, and it is not a guarantee of safety.
+- **Advanced no-approval profiles.** Codex supports configuration choices such as `approval_policy = "never"` and `sandbox_mode = "danger-full-access"`, but this combination is a high-privilege profile for isolated environments, not a beginner default.
+- **Hooks and local guards.** Hooks can add friction before risky commands, but they run as part of your local tool configuration and must be reviewed. The hooks in this repository are examples for advanced users.
 
 ### Misalignment
 
-In principle, since agentic tools have access to the terminal, they can be used to accomplish any task that can be done from a computer. In practice, however, they can amplify misalignment issues due to a lack of relevant context. This is an important caution to keep in mind. When you start encountering misalignment issues, I recommend trying to debug with the agent and figure out what the misunderstanding was. I tend to find misalignment comes from two main issues:
+Here, misalignment means the agent is acting on a different interpretation of the task than the one you intended. Agentic tools can amplify this problem because they can modify files or run commands before the misunderstanding is obvious. When you encounter misalignment, debug with the agent and try to identify the misunderstanding.
 
-1. *The agent doesn't have the necessary context to understand what you want it to do.* Agents tend to be over-eager due to their training, so they may try to guess what you want rather than asking for clarification. To mitigate this, consider methods to get the agent to do a more careful interview of you to obtain the relevant missing context.
-2. *The context buffer of the agent is too full, or full of irrelevant information.* Agents tend to have a drop in performance when their context buffer starts exceeding ~100-150k tokens. Ideally, you want to keep the context buffer as relevant and concise as possible. Consider:
-   - tightening any automatically loaded memory files (e.g. [AGENTS.md](https://agents.md/)) and only keeping information the model may not be able to figure out automatically.
-   - keeping temporary notes in a separate folder the model is told not to read unless explicitly asked to. This prevents *context rot*, where stale information is loaded by the model when it is building background context for a task.
-   - encouraging the agent to use sub-agents for complex research and retrieval tasks. Sub-agents get their own context buffer and will surface only the relevant information and files to the main agent.
-   - clearing the context buffer whenever you start a new task. If there is important context you want to keep, instruct the agent to save all relevant information to a file for a new agent, and then have the new agent load that file into its context.
+I tend to find misalignment comes from two main issues:
+
+1. **The agent lacks necessary context.** It may guess what you want rather than asking for clarification. To mitigate this, ask it to interview you before acting, or use a questioning workflow such as [`grill-me`](skills/grill-me/SKILL.md) for important tasks.
+2. **The context buffer is too full or contains irrelevant information.** The context buffer is the text the model can see during a response. Long or irrelevant context can make tools perform worse, so keep the buffer relevant and concise. Consider:
+   - tightening automatically loaded memory files such as [AGENTS.md](https://agents.md/) so they contain only information the model is unlikely to infer automatically;
+   - keeping temporary notes in a separate folder the model is told not to read unless explicitly asked, which reduces context rot from stale notes;
+   - using subagents for complex research and retrieval only when your tool supports them. [Claude Code](https://docs.anthropic.com/en/docs/claude-code/sub-agents) and [Codex](https://developers.openai.com/codex/subagents) document native subagents; the local [orchestration skill](skills/orchestration/SKILL.md) also shows a task-and-handoff pattern that can be adapted to other tools with review;
+   - clearing the context buffer whenever you start a new task. If there is important context to keep, ask the agent to save it to a handoff file, then start a fresh session and load only that file.
 
 ## 3. Resources once you're going
 
-1. [Markdown](https://www.markdownguide.org/basic-syntax/) — a simple formatting language that is widely used for writing notes and documentation. It is also the format that most agentic tools use for their files, so it is good to be familiar with it.
-2. *Skills*: a standardized format for extending AI agent capabilities with specialized knowledge and workflows. They are essentially *programs* written in Markdown. The agent uses the description of the skill to decide when to execute the program; it can also be manually invoked. See:
-   - [Skills Documentation](https://agentskills.io/home)
-   - [Skills Workshop](https://www.youtube.com/watch?v=pFsfax19yOM)
-   - [Obra Superpowers](https://github.com/obra/superpowers) — a collection of open-source skills to help agents work on complex coding and design tasks.
-   - [Matt Pocock's Agent Tools Workshop](https://www.youtube.com/watch?v=-QFHIoCo-Ko) — he has a nice skill called `/grill-me` which attempts to solve the misalignment issue by relentlessly grilling the user until there is a shared "understanding" of the task. This can be effective but time-consuming, so I only recommend using it for important tasks where misalignment would be a major issue. I have my own version of this skill in [this repo](skills/grill-me/SKILL.md).
-3. [Obsidian.md](https://obsidian.md/) — a powerful note-taking app that can be used to build a wiki of your knowledge and notes. Agents work well with this kind of structure, and you can even allow an agent to manage the wiki. I do recommend keeping some "control files" that are maintained by you and not the agent, to inject important context and guardrails.
-4. [Git](https://git-scm.com/) — a version control system that allows you to track changes to files over time. It is a powerful tool for managing the files that agents work with, and it can also be used to keep an audit trail of the agent's work. Agents can then use the audit trail to understand the history of a project and make informed decisions about how to proceed. I personally use a [`/checkpoint`](skills/checkpoint/SKILL.md) skill that the model knows to execute so as to automatically commit changes and maintain a more detailed log of its work in a separate `daily-notes/` folder.
+1. [Markdown](https://www.markdownguide.org/basic-syntax/) — a simple formatting language that is widely used for writing notes and documentation. Most agentic tools use Markdown for instruction files, notes, or generated documentation.
+2. **Skills** — reusable instruction bundles for agents. The [Agent Skills specification](https://agentskills.io/home) describes a shared `SKILL.md` format, and this repository's [skills README](skills/README.md) explains the local examples. See also [Skills Workshop](https://www.youtube.com/watch?v=pFsfax19yOM), [Obra Superpowers](https://github.com/obra/superpowers), and [Matt Pocock's Agent Tools Workshop](https://www.youtube.com/watch?v=-QFHIoCo-Ko). I have local versions of [`grill-me`](skills/grill-me/SKILL.md) and [`checkpoint`](skills/checkpoint/SKILL.md); checkpoint may write `daily-notes/` and commit to Git.
+3. **Hooks and guardrails** — optional advanced examples for adding friction around risky commands. Start with [`hooks/README.md`](hooks/README.md), and do not install hooks or high-privilege profiles without reviewing what files and commands they change.
+4. [Obsidian.md](https://obsidian.md/) — a note-taking app that can be used to build a wiki of your knowledge and notes. Agents work well with this kind of structure. If you let an agent manage a vault, keep some control files maintained by you rather than the agent.
+5. [Git](https://git-scm.com/) — a version control system that tracks changes to files over time. It is useful for managing files that agents edit and for keeping an audit trail of agent work.
 
 ## Contact
 
