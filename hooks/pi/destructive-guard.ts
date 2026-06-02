@@ -29,8 +29,7 @@ const POLICY_ENV = {
   HOOK_HOME: PI_AGENT_DIR,
   HOOK_PLATFORM_LABEL: "pi",
   HOOK_PROTECTED_HOME_REGEX: process.env.PI_DESTRUCTIVE_GUARD_HOME_REGEX ?? "\\.pi/agent",
-  HOOK_PROTECTED_FILES_REGEX:
-    "extensions/|lib/|settings\\.json|keybindings\\.json|auth\\.json|obsidian-delete-confirmed",
+  HOOK_PROTECTED_FILES_REGEX: "extensions/|lib/|settings\\.json|keybindings\\.json|auth\\.json",
 };
 
 function formatError(error: unknown, stderr: string): string {

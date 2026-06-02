@@ -13,7 +13,7 @@ EXTENSION = HOOKS_DIR / "pi" / "destructive-guard.ts"
 pytestmark = pytest.mark.skipif(shutil.which("node") is None, reason="Pi extension tests require node")
 
 NODE_HARNESS = r'''
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir } from "node:fs/promises";
 import { pathToFileURL } from "node:url";
 
 const extensionPath = process.argv[2];
@@ -21,11 +21,6 @@ const scenario = JSON.parse(process.argv[3]);
 const agentDir = process.env.PI_AGENT_DIR;
 
 await mkdir(agentDir, { recursive: true });
-
-if (scenario.obsidianConfirmationAgeSeconds !== undefined) {
-  const timestamp = Math.floor(Date.now() / 1000) - Number(scenario.obsidianConfirmationAgeSeconds);
-  await writeFile(`${agentDir}/obsidian-delete-confirmed`, `${timestamp}\n`);
-}
 
 const { default: registerExtension } = await import(pathToFileURL(extensionPath).href);
 const handlers = new Map();
@@ -149,44 +144,6 @@ def test_git_reset_blocks_without_ui(pi_env: dict[str, str]) -> None:
     response = run_scenario(pi_env, {"command": "git reset --hard", "hasUI": False})
 
     assert_blocked(response, "No interactive pi UI", prompts=0)
-
-
-def test_obsidian_delete_prompts_then_allows_when_approved(pi_env: dict[str, str]) -> None:
-    response = run_scenario(pi_env, {"command": "obsidian vault=X delete file=Y", "confirm": True})
-
-    assert_allowed(response, prompts=1)
-
-
-def test_obsidian_delete_blocks_without_ui(pi_env: dict[str, str]) -> None:
-    response = run_scenario(pi_env, {"command": "obsidian vault=X delete file=Y", "hasUI": False})
-
-    assert_blocked(response, "Obsidian deletion requires explicit confirmation", prompts=0)
-
-
-def test_obsidian_confirmation_file_still_allows_without_ui(pi_env: dict[str, str]) -> None:
-    response = run_scenario(
-        pi_env,
-        {
-            "command": "obsidian vault=X delete file=Y",
-            "hasUI": False,
-            "obsidianConfirmationAgeSeconds": 0,
-        },
-    )
-
-    assert_allowed(response)
-
-
-def test_expired_obsidian_confirmation_prompts_then_blocks_when_denied(pi_env: dict[str, str]) -> None:
-    response = run_scenario(
-        pi_env,
-        {
-            "command": "obsidian vault=X delete file=Y",
-            "confirm": False,
-            "obsidianConfirmationAgeSeconds": 60,
-        },
-    )
-
-    assert_blocked(response, "confirmation expired", prompts=1)
 
 
 def test_pi_extension_self_protection_blocks_without_ui(pi_env: dict[str, str]) -> None:

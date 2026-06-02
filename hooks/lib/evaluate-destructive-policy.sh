@@ -14,7 +14,7 @@ if [ "$#" -ne 1 ]; then
   exit 0
 fi
 
-hook_policy_evaluate_command "$1" "$SCRIPT_DIR/obsidian-guard.py"
+hook_policy_evaluate_command "$1"
 
 if [ "${HOOK_POLICY_DECISION:-allow}" = "block" ]; then
   echo "block"

@@ -23,8 +23,8 @@ fi
 
 HOOK_HOME="$HOME/.claude"
 HOOK_PLATFORM_LABEL="Claude Code"
-HOOK_PROTECTED_FILES_REGEX='settings\.json|\.auto-mode|obsidian-delete-confirmed'
-hook_policy_evaluate_command "$cmd" "$SCRIPT_DIR/../lib/obsidian-guard.py"
+HOOK_PROTECTED_FILES_REGEX='settings\.json|\.auto-mode'
+hook_policy_evaluate_command "$cmd"
 
 if [ "$HOOK_POLICY_DECISION" = "block" ]; then
   block "$HOOK_POLICY_REASON"

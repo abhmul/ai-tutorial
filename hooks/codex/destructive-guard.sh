@@ -30,8 +30,8 @@ fi
 
 HOOK_HOME="$HOME/.codex"
 HOOK_PLATFORM_LABEL="Codex"
-HOOK_PROTECTED_FILES_REGEX='config\.toml|hooks\.json|\.auto-mode|obsidian-delete-confirmed'
-hook_policy_evaluate_command "$cmd" "$SCRIPT_DIR/../lib/obsidian-guard.py"
+HOOK_PROTECTED_FILES_REGEX='config\.toml|hooks\.json|\.auto-mode'
+hook_policy_evaluate_command "$cmd"
 
 if [ "$HOOK_POLICY_DECISION" = "block" ]; then
   deny "$HOOK_POLICY_REASON"

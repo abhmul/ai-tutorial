@@ -18,12 +18,20 @@ The talk reasons about AI tools by separating model, harness, and interface. It 
 
 ## Advanced local examples
 
-Setup instructions for examples live in README files. Read the README before installing or adapting anything in these directories.
+Setup instructions for examples live outside `SKILL.md`, usually in README files or companion `references/setup.md` files. Read the README before installing or adapting anything in these directories.
 
 - [`skills/README.md`](./skills/README.md) — reusable agent skill examples. `grill-me` and `checkpoint` are the most beginner-relevant examples; `web-discovery`, `orchestration`, and `tdd` are more advanced. Checkpoint writes daily notes and may create Git commits, so review its side effects before use.
 - [`hooks/README.md`](./hooks/README.md) — hook and extension examples for Claude Code, Codex, and Pi. These are advanced, opt-in accident guards and workflow examples, not security boundaries and not beginner defaults.
 
 Prefer agent-assisted customization with human review over blind copy-paste: ask an agent to inspect the relevant README, compare it with your current tool configuration, and draft a small setup plan or diff for you to review.
+
+## Tool documentation
+
+Use the official docs for current setup details:
+
+- [Claude Code documentation](https://docs.anthropic.com/en/docs/claude-code/overview): see also [permission modes](https://docs.anthropic.com/en/docs/claude-code/permission-modes), [hooks](https://docs.anthropic.com/en/docs/claude-code/hooks), [subagents](https://docs.anthropic.com/en/docs/claude-code/sub-agents), and [skills](https://docs.anthropic.com/en/docs/claude-code/skills).
+- [OpenAI Codex documentation](https://developers.openai.com/codex): see also [configuration](https://developers.openai.com/codex/config-advanced), [hooks](https://developers.openai.com/codex/hooks), [subagents](https://developers.openai.com/codex/subagents), and [skills](https://developers.openai.com/codex/skills).
+- [Pi documentation](https://pi.dev/docs/latest/): see also [usage](https://pi.dev/docs/latest/usage), [settings](https://pi.dev/docs/latest/settings), [extensions](https://pi.dev/docs/latest/extensions), and [skills](https://pi.dev/docs/latest/skills).
 
 ## Contact
 

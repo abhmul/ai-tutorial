@@ -23,10 +23,6 @@ hook_policy_init() {
 
 hook_policy_evaluate_command() {
   local cmd="$1"
-  local obsidian_guard="$2"
-  local flag=""
-  local confirmed_at=""
-  local now=""
   local hook_dir_name=""
   local protected_home_regex=""
 
@@ -35,26 +31,6 @@ hook_policy_evaluate_command() {
 
   hook_dir_name=$(basename "$HOOK_HOME")
   protected_home_regex="${HOOK_PROTECTED_HOME_REGEX:-$(hook_policy_escape_regex_literal "$hook_dir_name")}"
-
-  if echo "$cmd" | grep -qE '^obsidian\b'; then
-    if ! echo "$cmd" | python3 "$obsidian_guard" 2>/dev/null; then
-      flag="$HOOK_HOME/obsidian-delete-confirmed"
-      if [ -f "$flag" ]; then
-        confirmed_at=$(cat "$flag" 2>/dev/null)
-        now=$(date +%s)
-        rm -f "$flag"
-        if [[ "$confirmed_at" =~ ^[0-9]+$ ]] && [ "$((now - confirmed_at))" -le 30 ]; then
-          return 0
-        fi
-
-        hook_policy_set_block "BLOCKED: Obsidian deletion confirmation expired (>30s). Run: echo \$(date +%s) > $HOOK_HOME/obsidian-delete-confirmed and retry immediately."
-        return 0
-      fi
-
-      hook_policy_set_block "BLOCKED: Obsidian deletion requires explicit confirmation. Run: echo \$(date +%s) > $HOOK_HOME/obsidian-delete-confirmed and retry within 30 seconds."
-      return 0
-    fi
-  fi
 
   if echo "$cmd" | grep -qiE "(^|[^a-zA-Z])(rm|mv|cp|install|ln|truncate|shred|chmod|tee)[[:space:]].*(~|\\\$HOME|/home/[^/]+)/$protected_home_regex/(hooks/|$HOOK_PROTECTED_FILES_REGEX)"; then
     hook_policy_set_block "BLOCKED: command would modify $HOOK_PLATFORM_LABEL guard or config files."

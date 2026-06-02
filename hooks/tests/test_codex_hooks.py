@@ -2,7 +2,6 @@ import json
 import os
 import shutil
 import subprocess
-import time
 import tomllib
 from pathlib import Path
 
@@ -77,11 +76,6 @@ def pretool_decision(result: subprocess.CompletedProcess[str]) -> tuple[str, str
             "modify Codex guard or config files",
             id="self-protect-config",
         ),
-        pytest.param(
-            "obsidian vault=X delete file=Y",
-            "Obsidian deletion requires explicit confirmation",
-            id="obsidian-delete-without-confirmation",
-        ),
     ],
 )
 def test_destructive_guard_denies_destructive_commands(
@@ -106,19 +100,6 @@ def test_destructive_guard_allows_safe_command_with_no_output(hook_dirs: tuple[P
     assert result.returncode == 0
     assert result.stdout == ""
     assert result.stderr == ""
-
-
-def test_obsidian_delete_with_fresh_confirmation_allows(hook_dirs: tuple[Path, Path]) -> None:
-    home, project = hook_dirs
-    flag = home / ".codex" / "obsidian-delete-confirmed"
-    flag.write_text(f"{int(time.time())}\n")
-
-    result = run_guard(home, project, "obsidian vault=X delete file=Y")
-
-    assert result.returncode == 0
-    assert result.stdout == ""
-    assert result.stderr == ""
-    assert not flag.exists()
 
 
 def test_auto_mode_disabled_by_default(hook_dirs: tuple[Path, Path]) -> None:

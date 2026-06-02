@@ -1,8 +1,8 @@
 ---
 name: web-discovery
 title: Web Discovery
-description: Adds external web/code/docs discovery and retrieval whenever web-available context could improve correctness, freshness, provenance, examples, docs, API usage, product/pricing facts, source verification, or research quality. Use unless the user explicitly forbids web/search/network access or requests local-only/offline work. Requires Ketch or an equivalent search-plus-retrieval workflow; search results are leads, not evidence.
-compatibility: Requires network permission and Ketch on PATH, or an equivalent search command plus source-retrieval command.
+description: Adds external web/code/docs discovery and retrieval whenever web-available context could improve correctness, freshness, provenance, examples, docs, API usage, product/pricing facts, source verification, or research quality. Use unless the user explicitly forbids web/search/network access or requests local-only/offline work. Search results are leads, not evidence.
+compatibility: Requires network permission and a configured search-plus-retrieval workflow; setup details belong in references/setup.md.
 metadata:
   version: 0.2.0
   policy-version: v0
@@ -14,17 +14,6 @@ status: draft
 # Web Discovery
 
 Use this skill when external web, code, or docs context may materially improve the answer.
-
-## Setup requirement
-
-Before using this skill for web-backed claims, confirm that the current harness has network permission and one of these setups:
-
-- **Ketch setup:** install [Ketch](https://github.com/1broseidon/ketch) by a documented path such as Homebrew, `go install github.com/1broseidon/ketch@latest`, or a GitHub release. Run `ketch config init` if needed, then `ketch config` to inspect `~/.config/ketch/config.json` and active backends.
-- **Equivalent setup:** provide one command that finds candidate sources and another command that retrieves source text. The same rule applies: discovery results are leads; retrieved source text is evidence.
-
-Ketch commands used by this skill are `ketch search`, `ketch scrape <url>`, `ketch code`, and `ketch docs`. Configure only the backends you intend to use. Ketch's default `brave` search backend needs a Brave Search API key; `ddg` is zero-config but may be rate-limited; `searxng` needs a SearXNG URL. For code search, Ketch documents `grepapp` and `sourcegraph` as zero-config backends, while the GitHub backend needs a token. For docs search, Context7 needs a `context7_api_key`.
-
-If no retrieval tool or network access is available, stay local or mark web-dependent claims as unsupported. Do not make Brave or any paid/API backend a hard prerequisite unless the task explicitly chooses that backend.
 
 ## Activation
 
@@ -46,6 +35,7 @@ Assume web context is allowed unless the user explicitly forbids web/search/netw
 ## Routing
 
 - Use local/project context first when it can answer the task.
+- Confirm that network access and a configured search-plus-retrieval workflow are available; setup details live in `references/setup.md`.
 - Default cheap discovery when Ketch is configured: `ketch search` for web, `ketch code` for code, `ketch docs` for docs.
 - Default retrieval/extraction when Ketch is configured: `ketch scrape <url>`.
 - If using an equivalent tool, map its search and retrieval commands before starting.

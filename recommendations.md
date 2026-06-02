@@ -94,7 +94,7 @@ Common ways to reduce prompt volume include:
 - **Sandboxing and permission modes.** Start from the tool's normal permission and sandbox settings. [Claude Code permission modes](https://docs.anthropic.com/en/docs/claude-code/permission-modes) and [Codex approvals and security](https://developers.openai.com/codex/agent-approvals-security) document ways to control what the tool can do. Use the smallest access level that fits the task.
 - **Auto permission review.** Claude Code documents an auto permission mode that uses a separate classifier model to reduce prompts and escalate riskier commands. It can add cost or latency, and it is not a guarantee of safety.
 - **Advanced no-approval profiles.** Codex supports configuration choices such as `approval_policy = "never"` and `sandbox_mode = "danger-full-access"`, but this combination is a high-privilege profile for isolated environments, not a beginner default.
-- **Hooks and local guards.** Hooks can add friction before risky commands, but they run as part of your local tool configuration and must be reviewed. The hooks in this repository are examples for advanced users.
+- **Hooks and local guards.** Hooks can add friction before risky commands, but they run as part of your local tool configuration and must be reviewed. The hooks in this repository are generic examples for advanced users. If your workflow has additional risky commands, ask an agent to draft guarded patterns and tests for those commands, then review the changes before enabling them.
 
 ### Misalignment
 

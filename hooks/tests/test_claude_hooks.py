@@ -2,7 +2,6 @@ import json
 import os
 import shutil
 import subprocess
-import time
 from pathlib import Path
 
 import pytest
@@ -71,12 +70,6 @@ def combined_output(result: subprocess.CompletedProcess[str]) -> str:
             "modify Claude Code guard or config files",
             id="self-protect-settings",
         ),
-        pytest.param(
-            "obsidian vault=X delete file=Y",
-            2,
-            "Obsidian deletion requires explicit confirmation",
-            id="obsidian-delete-without-confirmation",
-        ),
     ],
 )
 def test_destructive_guard(command: str, expected_code: int, expected_text: str, hook_dirs: tuple[Path, Path]) -> None:
@@ -86,18 +79,6 @@ def test_destructive_guard(command: str, expected_code: int, expected_text: str,
 
     assert result.returncode == expected_code
     assert expected_text in combined_output(result)
-
-
-def test_obsidian_delete_with_fresh_confirmation_allows(hook_dirs: tuple[Path, Path]) -> None:
-    home, project = hook_dirs
-    flag = home / ".claude" / "obsidian-delete-confirmed"
-    flag.write_text(f"{int(time.time())}\n")
-
-    result = run_guard(home, project, "obsidian vault=X delete file=Y")
-
-    assert result.returncode == 0
-    assert "destructive-guard: no destructive patterns detected" in result.stdout
-    assert not flag.exists()
 
 
 def test_auto_mode_disabled_by_default(hook_dirs: tuple[Path, Path]) -> None:
