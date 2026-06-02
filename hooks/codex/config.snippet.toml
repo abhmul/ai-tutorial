@@ -1,0 +1,6 @@
+[features]
+codex_hooks = true
+
+[profiles.auto]
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
