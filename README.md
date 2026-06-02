@@ -22,7 +22,6 @@ Setup instructions for examples live in README files. Read the README before ins
 
 - [`skills/README.md`](./skills/README.md) — reusable agent skill examples. `grill-me` and `checkpoint` are the most beginner-relevant examples; `web-discovery`, `orchestration`, and `tdd` are more advanced. Checkpoint writes daily notes and may create Git commits, so review its side effects before use.
 - [`hooks/README.md`](./hooks/README.md) — hook and extension examples for Claude Code, Codex, and Pi. These are advanced, opt-in accident guards and workflow examples, not security boundaries and not beginner defaults.
-- [`reports/generalization-review.md`](./reports/generalization-review.md) — a historical review of which local setup ideas generalize to newcomers and which should stay framed as advanced or author-local examples.
 
 Prefer agent-assisted customization with human review over blind copy-paste: ask an agent to inspect the relevant README, compare it with your current tool configuration, and draft a small setup plan or diff for you to review.
 
