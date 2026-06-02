@@ -1,0 +1,55 @@
+{
+  "id": "T005",
+  "type": "presentation creation",
+  "priority": 60,
+  "dependencies": ["T004"],
+  "title": "Create HTML presentation for ai-tools-intro generalization review",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T004-synthesis-recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/references.md"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T002-local-audit.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T003-external-freshness.md",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md"
+    ]
+  },
+  "scope": "Create a standalone HTML presentation in /home/abhmul/Documents/ai-tools-intro/reports/ that explains the generalization review findings and recommendations for newcomers. Use the T004 report as the primary source. Do not run a final independent verification; T006 will verify the result.",
+  "goals": [
+    "Create a clear HTML slide-style presentation for the user's review objective.",
+    "Address all six focus items: Codex config/profile changes, web-discovery setup, pi-specific orchestration, destructive guard and Obsidian guard setup, agent-python-like environment setup, and shell alias setup.",
+    "Use neutral, factual language suitable for people with no AI experience and define necessary terms briefly.",
+    "Include links or footnotes to official/primary sources surfaced by T003 and local paths surfaced by T002/T004.",
+    "Record any assumptions or unresolved points visibly rather than presenting them as facts."
+  ],
+  "non_goals": [
+    "Do not read tmp/ or archive/ directories.",
+    "Do not edit recommendations.md, skills, hooks, README.md, or references.md.",
+    "Do not introduce unverified external claims beyond the T003/T004 evidence base.",
+    "Do not use hype, slogans, emoji, or model-version names unless necessary as specific examples."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md.",
+    "Capability claims must be traceable to official documentation; cautionary claims must be tied to primary or peer-reviewed sources or marked as unresolved.",
+    "Keep the presentation self-contained enough to open locally without external build tools.",
+    "Avoid exposing private machine-specific details from ~/.bash_aliases or local vault paths except when they are necessary as anonymized examples."
+  ],
+  "success_criteria": [
+    "A standalone HTML file exists at /home/abhmul/Documents/ai-tools-intro/reports/generalization-review-presentation.html.",
+    "A handoff exists at /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T005-html-presentation.md.",
+    "The presentation covers all six focus items and includes a concise recommendations summary.",
+    "The HTML can be opened locally without a build step and does not depend on remote scripts."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review-presentation.html",
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T005-html-presentation.md"
+  ],
+  "worker_token_budget": "150k"
+}

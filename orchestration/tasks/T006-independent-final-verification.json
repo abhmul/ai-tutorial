@@ -1,0 +1,60 @@
+{
+  "id": "T006",
+  "type": "independent final verification",
+  "priority": 50,
+  "dependencies": ["T005"],
+  "title": "Independently verify final report and HTML presentation against objective and constraints",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T001-init-state.json",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T002-local-audit.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T003-external-freshness.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T004-synthesis-recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T005-html-presentation.md",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+      "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review-presentation.html",
+      "/home/abhmul/Documents/ai-tools-intro/references.md"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/hooks.json"
+    ]
+  },
+  "scope": "As an independent verifier, check whether the produced report and HTML presentation satisfy the user's objective, the six focus items, source-traceability requirements, and repository instructions. Do not simply trust producer handoffs. Update orchestration state with artifact trust verdicts and create follow-up/fix task files if verification fails.",
+  "goals": [
+    "Verify coverage of all six focus items and the final deliverable path in reports/.",
+    "Check that capability claims trace to official documentation and unresolved items are not presented as facts.",
+    "Check neutral tone, newcomer suitability, no hype/slogans/emoji, and no unnecessary hard-coded model versions.",
+    "Check that no forbidden tmp/ or archive/ reads were required by final artifacts and that private shell configuration was not exposed.",
+    "If issues are found, create targeted follow-up task JSON files and leave trust verdicts low or partial."
+  ],
+  "non_goals": [
+    "Do not read tmp/ or archive/ directories.",
+    "Do not make broad rewrites unless creating a small fix task is impossible and the issue is trivial.",
+    "Do not verify your own produced content if you were the T005 worker; this task requires an independent worker."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md.",
+    "Treat producer outputs as untrusted until independently checked.",
+    "Use primary or official sources for claim verification; if web access is unavailable, verify only against the existing T003 evidence and mark limitations explicitly.",
+    "Preserve state.json validity if updating it."
+  ],
+  "success_criteria": [
+    "A verification handoff exists at /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T006-independent-final-verification.md.",
+    "state.json artifacts_trust records verdicts for T002, T003, T004, T005, the report, and the HTML presentation.",
+    "If the objective is satisfied, state.json queue marks all tasks complete and blockers empty; if not, state.json includes concrete blockers or follow-up tasks.",
+    "Any created fix tasks include dependencies, scope, safety rules, and expected outputs."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T006-independent-final-verification.md",
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json"
+  ],
+  "worker_token_budget": "150k"
+}

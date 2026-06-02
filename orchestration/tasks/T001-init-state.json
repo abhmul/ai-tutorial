@@ -1,0 +1,50 @@
+{
+  "id": "T001",
+  "type": "orchestration setup and planning",
+  "priority": 100,
+  "dependencies": [],
+  "title": "Initialize orchestration state and task plan for ai-tools-intro generalization review",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/skills/",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/.bash_aliases"
+    ]
+  },
+  "scope": "Extract the objective, deliverables, constraints, forbidden reads, likely workstreams, and quality gates. Create a concrete task plan for workers. Do not perform the full audit or write the final presentation in this task.",
+  "goals": [
+    "Verify the repository-level instructions and record constraints in state.json.",
+    "Inspect the top-level layout and the names of recent skills/hooks without reading tmp/ or archive/.",
+    "Identify workstreams needed to answer the user's six focus items and to produce an HTML presentation.",
+    "Create JSON task files in /home/abhmul/Documents/ai-tools-intro/orchestration/tasks/ for the next workers, including independent verification tasks.",
+    "Update /home/abhmul/Documents/ai-tools-intro/orchestration/state.json with the new queue and an artifacts_trust section."
+  ],
+  "non_goals": [
+    "Do not edit skills, hooks, recommendations, README, or references in this task.",
+    "Do not read /home/abhmul/Documents/ai-tools-intro/tmp/ or /home/abhmul/Documents/ai-tools-intro/archive/.",
+    "Do not read /home/abhmul/Documents/vaults/agent-vault/tmp/ or /home/abhmul/Documents/vaults/agent-vault/archive/.",
+    "Do not quote secrets or unrelated shell configuration from ~/.bash_aliases; if reading it, extract only aliases/functions relevant to ai-tool harness setup."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md. Audience is newcomers; neutral factual tone; no hype or emoji.",
+    "All claims from the user prompt must be verified by later verification tasks; mark unverified claims as untrusted.",
+    "Do not use Python unless you first read /home/abhmul/Documents/vaults/agent-vault/agent-python/README or /home/abhmul/Documents/vaults/agent-vault/agent-python/README.md if present. Prefer shell/read/find for this planning task."
+  ],
+  "success_criteria": [
+    "state.json has objective, constraints, queue, artifacts_trust, blockers, and last_updated fields populated consistently.",
+    "At least four concrete follow-up task JSON files exist, covering local audit, external freshness verification, presentation creation, and independent final verification.",
+    "A handoff markdown file exists at /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T001-handoff.md summarizing decisions, queued tasks, and any blockers."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json",
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T00x-*.json",
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T001-handoff.md"
+  ],
+  "worker_token_budget": "150k"
+}

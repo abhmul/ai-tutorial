@@ -1,0 +1,57 @@
+{
+  "id": "T004",
+  "type": "synthesis and recommendation drafting",
+  "priority": 70,
+  "dependencies": ["T002", "T003"],
+  "title": "Synthesize audit and freshness evidence into general-user recommendations and setup directions",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T002-local-audit.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T003-external-freshness.md",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/references.md"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/hooks.json",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/claude/settings.snippet.json",
+      "/home/abhmul/.bash_aliases"
+    ]
+  },
+  "scope": "Convert T002 local findings and T003 verified external evidence into a concise review report and concrete, newcomer-oriented setup recommendations. Do not rewrite skills/hooks unless the orchestrator later creates an implementation task; this task should prepare the content that T005 can use for the presentation.",
+  "goals": [
+    "Produce a recommendation report covering all six focus items with a clear distinction between must-fix, should-explain, optional, and no-change recommendations.",
+    "Draft general-user setup directions for web-discovery/ketch-equivalent prerequisites, orchestration dispatch across pi/Codex/Claude Code, destructive guard opt-in behavior, agent-python-like environments, and shell aliases.",
+    "Identify any edits that should be made to README.md, recommendations.md, skills, hooks, or references.md in a later task, with exact target paths and rationale.",
+    "Use verified external evidence from T003 for capability/config claims and mark unresolved points as unresolved.",
+    "Prepare a short presentation outline for T005, including suggested slide titles and evidence to cite."
+  ],
+  "non_goals": [
+    "Do not read tmp/ or archive/ directories.",
+    "Do not write the final HTML presentation.",
+    "Do not perform independent verification of your own report; T006 handles final verification.",
+    "Do not quote unrelated ~/.bash_aliases content or secrets if that file is consulted."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md: newcomers audience, plain language, neutral factual tone, no hype or emoji.",
+    "Capability claims must trace to official documentation; cautionary claims must trace to primary or peer-reviewed sources in references.md or be flagged as needing citation work.",
+    "Do not hard-code model version names unless giving a specific example.",
+    "Use inline markdown links for further reading in markdown outputs where appropriate."
+  ],
+  "success_criteria": [
+    "A report exists at /home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md.",
+    "A handoff exists at /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T004-synthesis-recommendations.md.",
+    "The report covers all six focus items and clearly separates verified facts, local observations, recommendations, and unresolved questions.",
+    "The handoff includes the proposed presentation outline for T005 and any blockers."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/reports/generalization-review.md",
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T004-synthesis-recommendations.md"
+  ],
+  "worker_token_budget": "150k"
+}

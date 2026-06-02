@@ -1,0 +1,62 @@
+{
+  "id": "T003",
+  "type": "external freshness verification",
+  "priority": 85,
+  "dependencies": ["T001"],
+  "title": "Verify current external documentation for Codex, web discovery, worker dispatch, hooks, and setup guidance",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json",
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/hooks.json"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/references.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/claude/settings.snippet.json",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/pi/destructive-guard.ts"
+    ],
+    "external_sources_to_check": [
+      "https://developers.openai.com/codex/config-advanced",
+      "Official Codex documentation relevant to config profiles, hooks, approval/sandbox settings, and global config placement",
+      "Official Claude Code documentation relevant to hooks/settings and permissions",
+      "Official pi-coding-agent documentation relevant to hooks, skills, worker dispatch, and configuration if available locally or online",
+      "Official or primary documentation for ketch/Kagi/Brave setup only insofar as skills/web-discovery depends on them",
+      "Primary documentation for Python virtual environments or uv/pipx only if setup recommendations require it"
+    ]
+  },
+  "scope": "Use web or official documentation retrieval where available to verify whether the tutorial's Codex config/profile guidance, web-discovery setup assumptions, orchestration dispatch assumptions, hook setup instructions, and agent-python-like environment recommendations are current. This is a verification task, not a writing or implementation task.",
+  "goals": [
+    "Verify the user focus item about Codex global config/profile changes against the named OpenAI Codex advanced config page and any linked official docs.",
+    "Determine what setup prerequisites skills/web-discovery must state for ketch or equivalent search/retrieval tools, without assuming the author's local setup is available to general users.",
+    "Verify whether orchestration worker dispatch is pi-specific in this tutorial and what neutral guidance can be given for pi, Codex, and Claude Code users.",
+    "Verify relevant current docs for destructive hooks/permission hooks where official docs exist.",
+    "Collect source URLs, access dates, and short evidence summaries for later presentation and recommendations."
+  ],
+  "non_goals": [
+    "Do not read tmp/ or archive/ directories.",
+    "Do not edit repository content other than the T003 handoff.",
+    "Do not write the final HTML presentation.",
+    "Do not cite blogs or secondary sources when official or primary sources are available."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md: newcomer audience, neutral factual tone, and capability claims traceable to official documentation.",
+    "Cautionary claims intended for final guide material must be backed by primary or peer-reviewed sources already in or to be added to references.md; this task should flag missing sources rather than inventing citations.",
+    "If web access is unavailable or a source is browser/paywall restricted, record the limitation as a blocker or uncertainty instead of guessing.",
+    "Treat user-provided claims and local tutorial claims as unverified until checked."
+  ],
+  "success_criteria": [
+    "A handoff exists at /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T003-external-freshness.md.",
+    "The handoff includes source URLs, retrieval/access dates, and a verdict for each of the six focus items: confirmed, contradicted, partially confirmed, or unresolved.",
+    "The handoff identifies any docs that the next worker should cite or avoid.",
+    "All material claims are tied to official, primary, or peer-reviewed sources, or explicitly marked unresolved."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T003-external-freshness.md"
+  ],
+  "worker_token_budget": "150k"
+}

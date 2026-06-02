@@ -1,0 +1,65 @@
+{
+  "id": "T002",
+  "type": "local audit",
+  "priority": 90,
+  "dependencies": ["T001"],
+  "title": "Audit local skills, hooks, and tutorial text for setup-specific assumptions",
+  "relevant_files": {
+    "read_first": [
+      "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+      "/home/abhmul/Documents/ai-tools-intro/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/recommendations.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/README.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/web-discovery/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/orchestration/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/checkpoint/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/config.snippet.toml",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/hooks.json",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/codex/destructive-guard.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/claude/settings.snippet.json",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/claude/destructive-guard.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/pi/destructive-guard.ts",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/lib/obsidian-guard.py"
+    ],
+    "read_if_needed": [
+      "/home/abhmul/Documents/ai-tools-intro/skills/grill-me/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/skills/tdd/SKILL.md",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/lib/destructive-policy.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/lib/evaluate-destructive-policy.sh",
+      "/home/abhmul/Documents/ai-tools-intro/hooks/lib/auto-mode-state.sh",
+      "/home/abhmul/Documents/vaults/agent-vault/.agents/skills/",
+      "/home/abhmul/Documents/vaults/agent-vault/hooks/",
+      "/home/abhmul/.bash_aliases"
+    ]
+  },
+  "scope": "Perform a bounded local-only audit of recent skills and hooks to identify assumptions tied to the author's machine, Obsidian vaults, pi-specific worker dispatch, Codex config/profile snippets, ketch/web-discovery setup, destructive-guard behavior, agent-python-like setup, and bash alias setup. Compare against source files in agent-vault only when needed to identify what was copied or adapted. Do not perform external web verification and do not write the final presentation.",
+  "goals": [
+    "Map the local tutorial artifacts that matter for the six focus items.",
+    "Identify concrete setup-specific assumptions and likely out-of-date claims, marking each as local-evidence-only until T003 verifies freshness.",
+    "Assess whether hooks/destructive-guard behavior, especially the Obsidian guard, is general-user-safe or requires opt-in/setup explanation.",
+    "Extract only relevant ai-tool harness aliases or functions from ~/.bash_aliases if needed; do not quote unrelated shell configuration or secrets.",
+    "Produce a concise handoff with file paths, findings, evidence snippets or line references, and recommended next actions."
+  ],
+  "non_goals": [
+    "Do not read any tmp/ or archive/ directory.",
+    "Do not edit skills, hooks, recommendations, README, references, or reports.",
+    "Do not make freshness claims about external tools without T003 evidence.",
+    "Do not run Python unless you first read the shared agent-python README required by project instructions."
+  ],
+  "safety": [
+    "Follow /home/abhmul/Documents/ai-tools-intro/AGENTS.md: newcomers audience, plain language, neutral factual tone, no hype or emoji.",
+    "Forbidden reads include /home/abhmul/Documents/ai-tools-intro/tmp/, /home/abhmul/Documents/ai-tools-intro/archive/, /home/abhmul/Documents/vaults/agent-vault/tmp/, /home/abhmul/Documents/vaults/agent-vault/archive/, and prompt-buffer.md.",
+    "Treat user-provided claims as unverified; record them as candidates for verification rather than facts.",
+    "If reading ~/.bash_aliases, extract only aliases/functions relevant to ai-tool harness setup and omit secrets, tokens, unrelated paths, and private machine details."
+  ],
+  "success_criteria": [
+    "A handoff exists at /home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T002-local-audit.md.",
+    "The handoff addresses all six focus items and distinguishes direct local evidence from unverified assumptions.",
+    "The handoff lists any recommended edits or setup sections by target file/path without applying them.",
+    "No forbidden directories or prompt-buffer.md were read."
+  ],
+  "expected_outputs": [
+    "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T002-local-audit.md"
+  ],
+  "worker_token_budget": "150k"
+}

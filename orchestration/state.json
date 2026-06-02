@@ -1,0 +1,214 @@
+{
+  "objective": "Review recent additions to /home/abhmul/Documents/ai-tools-intro/ from /home/abhmul/Documents/vaults/agent-vault/, identify setup-specific and out-of-date content, recommend changes for general users, and create an HTML presentation in /home/abhmul/Documents/ai-tools-intro/reports/.",
+  "constraints": {
+    "repo": "/home/abhmul/Documents/ai-tools-intro",
+    "orchestration_dir": "/home/abhmul/Documents/ai-tools-intro/orchestration",
+    "forbidden_reads": [
+      "/home/abhmul/Documents/ai-tools-intro/tmp/",
+      "/home/abhmul/Documents/ai-tools-intro/archive/",
+      "/home/abhmul/Documents/vaults/agent-vault/tmp/",
+      "/home/abhmul/Documents/vaults/agent-vault/archive/",
+      "prompt-buffer.md"
+    ],
+    "style": [
+      "Audience: newcomers with no AI experience; plain language; define terms.",
+      "Neutral and factual tone; no superlatives, hype, slogans, or emoji.",
+      "Capability claims must trace to official documentation.",
+      "Cautionary claims must come from a primary or peer-reviewed source cited in references.md, not inline.",
+      "Do not hard-code model version names unless giving specific examples.",
+      "Use inline markdown links for further reading where relevant."
+    ],
+    "user_focus_items": [
+      "Codex global config/profile changes per https://developers.openai.com/codex/config-advanced",
+      "skills/web-discovery assumes ketch setup; provide setup directions",
+      "skills/orchestration is pi-specific; consider pi/codex/claude-code dispatch or guidance for other tools",
+      "hooks/destructive-guard may be user-setup-specific; assess Obsidian guard",
+      "Provide setup directions for agent-python-like environment",
+      "Consider ~/.bash_aliases harness-command setup for tutorial"
+    ],
+    "quality_gates": [
+      "Later verification tasks must independently verify user-prompt claims and producer artifacts before trust is raised.",
+      "Do not expose secrets or unrelated shell configuration; if ~/.bash_aliases is read, extract only relevant ai-tool harness setup aliases/functions.",
+      "Do not use Python unless the worker first reads /home/abhmul/Documents/vaults/agent-vault/agent-python/README or /home/abhmul/Documents/vaults/agent-vault/agent-python/README.md if present."
+    ]
+  },
+  "observed_layout": {
+    "top_level_entries": [
+      ".git/",
+      ".gitignore",
+      "AGENTS.md",
+      "ai-tools-guide.md",
+      "ai-tools-onepager.md",
+      "ai-tutorial-meeting-notes.pdf",
+      "CLAUDE.md",
+      "hooks/",
+      "orchestration/",
+      "README.md",
+      "recommendations.md",
+      "references.md",
+      "reports/",
+      "skills/"
+    ],
+    "forbidden_entries_present_but_unread": [
+      "archive/",
+      "tmp/"
+    ],
+    "skills_seen_by_name": [
+      "checkpoint",
+      "grill-me",
+      "orchestration",
+      "tdd",
+      "web-discovery"
+    ],
+    "hooks_seen_by_name": [
+      "claude/auto-mode.sh",
+      "claude/destructive-guard.sh",
+      "claude/settings.snippet.json",
+      "codex/auto-mode.sh",
+      "codex/config.snippet.toml",
+      "codex/destructive-guard.sh",
+      "codex/hooks.json",
+      "lib/auto-mode-state.sh",
+      "lib/destructive-policy.sh",
+      "lib/evaluate-destructive-policy.sh",
+      "lib/obsidian-guard.py",
+      "pi/destructive-guard.ts",
+      "tests/test_claude_hooks.py",
+      "tests/test_codex_hooks.py",
+      "tests/test_obsidian_guard.py",
+      "tests/test_pi_hooks.py"
+    ]
+  },
+  "workstreams": [
+    {
+      "id": "W1",
+      "name": "Local setup-specific audit",
+      "covered_by": ["T002"],
+      "purpose": "Inspect tutorial skills, hooks, recommendations, and relevant source copies for machine-specific assumptions and stale local guidance."
+    },
+    {
+      "id": "W2",
+      "name": "External freshness verification",
+      "covered_by": ["T003"],
+      "purpose": "Verify Codex, hook, web-discovery, orchestration, and setup claims against official or primary sources."
+    },
+    {
+      "id": "W3",
+      "name": "General-user recommendation synthesis",
+      "covered_by": ["T004"],
+      "purpose": "Turn local and external evidence into concrete recommendations and setup directions for newcomers."
+    },
+    {
+      "id": "W4",
+      "name": "HTML presentation creation",
+      "covered_by": ["T005"],
+      "purpose": "Create the final standalone HTML presentation in reports/."
+    },
+    {
+      "id": "W5",
+      "name": "Independent final verification",
+      "covered_by": ["T006"],
+      "purpose": "Verify final artifacts against the objective, focus items, evidence standards, and style constraints."
+    }
+  ],
+  "queue": [
+    {
+      "id": "T001",
+      "status": "complete",
+      "priority": 100,
+      "task_file": "orchestration/tasks/T001-init-state.json",
+      "handoff": "orchestration/handoffs/T001-handoff.md",
+      "dependencies": [],
+      "notes": "Initialized state, planned workstreams, created follow-up tasks. Did not perform the full audit or write the final presentation."
+    },
+    {
+      "id": "T002",
+      "status": "ready",
+      "priority": 90,
+      "task_file": "orchestration/tasks/T002-local-audit.json",
+      "handoff": "orchestration/handoffs/T002-local-audit.md",
+      "dependencies": []
+    },
+    {
+      "id": "T003",
+      "status": "ready",
+      "priority": 85,
+      "task_file": "orchestration/tasks/T003-external-freshness.json",
+      "handoff": "orchestration/handoffs/T003-external-freshness.md",
+      "dependencies": []
+    },
+    {
+      "id": "T004",
+      "status": "waiting_on_dependencies",
+      "priority": 70,
+      "task_file": "orchestration/tasks/T004-synthesis-recommendations.json",
+      "handoff": "orchestration/handoffs/T004-synthesis-recommendations.md",
+      "dependencies": ["T002", "T003"]
+    },
+    {
+      "id": "T005",
+      "status": "waiting_on_dependencies",
+      "priority": 60,
+      "task_file": "orchestration/tasks/T005-html-presentation.json",
+      "handoff": "orchestration/handoffs/T005-html-presentation.md",
+      "dependencies": ["T004"]
+    },
+    {
+      "id": "T006",
+      "status": "waiting_on_dependencies",
+      "priority": 50,
+      "task_file": "orchestration/tasks/T006-independent-final-verification.json",
+      "handoff": "orchestration/handoffs/T006-independent-final-verification.md",
+      "dependencies": ["T005"]
+    }
+  ],
+  "artifacts_trust": {
+    "user_focus_items": {
+      "status": "unverified",
+      "notes": "Copied from initial state/user prompt. T003 must verify external freshness; T002 must verify local evidence."
+    },
+    "local_repo_instructions": {
+      "status": "directly_read_by_T001",
+      "paths": [
+        "/home/abhmul/Documents/ai-tools-intro/AGENTS.md",
+        "/home/abhmul/Documents/ai-tools-intro/README.md",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json"
+      ],
+      "notes": "Trusted for current repository constraints and high-level README facts only."
+    },
+    "layout_snapshot": {
+      "status": "directly_observed_by_T001",
+      "notes": "Top-level, skills, hooks, tasks, and reports directory names were listed. tmp/ and archive/ were not read."
+    },
+    "T001_plan_artifacts": {
+      "status": "self_generated_unverified",
+      "paths": [
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/state.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T002-local-audit.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T003-external-freshness.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T004-synthesis-recommendations.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T005-html-presentation.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/tasks/T006-independent-final-verification.json",
+        "/home/abhmul/Documents/ai-tools-intro/orchestration/handoffs/T001-handoff.md"
+      ],
+      "notes": "Usable for dispatch as a plan, but not an independent verification of the objective."
+    },
+    "T002_local_audit": {
+      "status": "not_started"
+    },
+    "T003_external_freshness": {
+      "status": "not_started"
+    },
+    "T004_recommendation_report": {
+      "status": "not_started"
+    },
+    "T005_html_presentation": {
+      "status": "not_started"
+    },
+    "T006_final_verification": {
+      "status": "not_started"
+    }
+  },
+  "blockers": [],
+  "last_updated": "2026-06-02T11:57:47-05:00"
+}
