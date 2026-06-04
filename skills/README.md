@@ -1,6 +1,6 @@
 # Skills
 
-A skill is a reusable instruction bundle for an agent. The main file is usually `SKILL.md`; setup instructions should live in companion files such as `references/setup.md` or in this README. Extra examples or scripts may live beside the skill. A harness is the program that runs the model and tools, such as Codex, Claude Code, or Pi.
+A skill is a reusable instruction bundle for an agent. The main file is usually `SKILL.md`; setup instructions should live in companion `SETUP.md` files or in this README. Extra examples or scripts may live beside the skill. A harness is the program that runs the model and tools, such as Codex, Claude Code, or Pi. Here Pi means the `pi` coding harness, not Raspberry Pi hardware.
 
 These skills are examples, not drop-in setup for every tool. Read each skill's requirements before use, and ask an agent to help adapt the wording, paths, and permissions to your harness if needed.
 
@@ -11,8 +11,8 @@ These skills are examples, not drop-in setup for every tool. Read each skill's r
 
 ## Advanced examples
 
-- `web-discovery`: web/code/docs research. It needs network permission plus Ketch or an equivalent search-plus-retrieval workflow; see [`web-discovery/references/setup.md`](web-discovery/references/setup.md). Search results are leads; retrieved source text is evidence.
-- `orchestration`: task delegation for large work. Start with the portable task-and-handoff pattern, then choose a harness-specific worker method. The included Pi/tmux watcher is one advanced implementation, not a general subagent system.
+- `web-discovery`: web/code/docs research. It needs network permission plus Ketch or an equivalent search-plus-retrieval workflow; see [`web-discovery/SETUP.md`](web-discovery/SETUP.md). Search results are leads; retrieved source text is evidence.
+- `orchestration`: task delegation for large work. The skill defines the queue and handoff contract; see [`orchestration/SETUP.md`](orchestration/SETUP.md) to choose a manual, native-subagent, Pi/tmux, or other worker method. The included Pi/tmux watcher is one advanced implementation, not a general subagent system.
 - `tdd`: test-driven development workflow guidance. It is useful when you want a red-green-refactor loop and behavior-focused tests.
 
 ## Portability and setup

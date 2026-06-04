@@ -79,7 +79,7 @@ This repository contains local examples that are useful to study, but they are n
 
 - [`skills/README.md`](skills/README.md) explains the skill examples. `grill-me` and `checkpoint` are the most beginner-relevant examples; `web-discovery`, `orchestration`, and `tdd` are more advanced. Checkpoint writes daily notes and may create Git commits, so review that side effect before using it.
 - [`hooks/README.md`](hooks/README.md) explains hook and extension examples for Claude Code, Codex, and Pi. A hook is a command or extension that the harness runs around a tool event, such as a proposed shell command. These hooks are advanced, opt-in accident guards. They are not security boundaries and should not be installed by blind copy-paste.
-- The orchestration skill provides a portable task-and-handoff pattern for large work. Its included Pi/tmux watcher is one advanced implementation method, not a general subagent system. Claude Code and Codex have their own native subagent workflows.
+- The orchestration skill provides a portable task-and-handoff pattern for large work. Its `SETUP.md` describes how to choose a worker method for the user's harness. The included Pi/tmux watcher is one advanced implementation method for the Pi coding harness, not Raspberry Pi hardware and not a general subagent system. Claude Code and Codex have their own native subagent workflows.
 
 Prefer agent-assisted installation and customization with human review. A good setup request is: "Inspect this README and my current tool config, then draft a small deployment plan and diff. Do not apply it until I review it." This is safer than blindly running an installer or copying a config snippet you do not understand.
 
